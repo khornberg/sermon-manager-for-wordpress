@@ -186,7 +186,42 @@ register_taxonomy('wpfc_bible_book','wpfc_sermon', array(
 	'query_var' => true,
     'rewrite' => array ( 'slug' => 'book' ),
 ));
+
+//Service Type
+$labels = array(	
+	'name' => __( 'Service Type', 'sermon-manager'),
+	'singular_name' => __( 'Service Type', 'sermon-manager'),
+	'menu_name' => __( 'Service Type', 'sermon-manager' ),
+	'search_items' => __( 'Search service types', 'sermon-manager' ), 
+	'popular_items' => __( 'Most popular service types', 'sermon-manager' ), 
+	'all_items' => __( 'All service types', 'sermon-manager' ),
+	'edit_item' => __( 'Edit service type', 'sermon-manager' ),
+	'update_item' => __( 'Update service type', 'sermon-manager' ), 
+	'add_new_item' => __( 'Add new service types', 'sermon-manager' ),
+	'new_item_name' => __( 'New Service Type', 'sermon-manager' ), 
+	'separate_items_with_commas' => __( 'Separate service types with commas', 'sermon-manager' ),
+	'add_or_remove_items' => __( 'Add or remove service types', 'sermon-manager' ),
+	'choose_from_most_used' => __( 'Choose from most used service types', 'sermon-manager' ),
+	'parent_item' => null,
+    'parent_item_colon' => null,
+);
+
+register_taxonomy('wpfc_service_type','wpfc_sermon', array(
+	'hierarchical' => false, 
+	'labels' => $labels, 
+	'show_ui' => true,
+	'query_var' => true,
+    'rewrite' => array ( 'slug' => 'service-type' ),
+));
 }
+
+//Remove service type box (since we already have a method for selecting it)
+function remove_service_type_taxonomy() {
+	$custom_taxonomy_slug = 'wpfc_service_type';
+	$custom_post_type = 'wpfc_sermon';
+	remove_meta_box('tagsdiv-wpfc_service_type', 'wpfc_sermon', 'side' );
+}
+add_action( 'admin_menu', 'remove_service_type_taxonomy' );
 
 //add filter to insure the text Sermon, or sermon, is displayed when user updates a sermon
 add_filter('post_updated_messages', 'wpfc_sermon_updated_messages');
