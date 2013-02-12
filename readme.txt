@@ -71,6 +71,7 @@ Visit the [plugin homepage](http://wpforchurch.com/plugins/sermon-manager/ "Serm
 
 = 1.5.7 =
 * Updated mediaelements.js to the latest version
+* Change Service Types to a custom taxonomy so you can add/edit as you wish
 
 = 1.5.6 =
 * Added comma separator in case of multiple speakers or multiple series

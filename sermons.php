@@ -726,7 +726,7 @@ function wpfc_get_term_dropdown($taxonomy) {
 
 // Make all queries for sermons order by the sermon date
 function wpfc_sermon_order_query( $query ) {
-	if ( isset($query->query_vars['post_type']) != 'nav_menu_item' ) :
+	if ( $query->is_main_query() ) :
 	if( is_post_type_archive('wpfc_sermon') || is_tax( 'wpfc_preacher' ) || is_tax( 'wpfc_sermon_topics' ) || is_tax( 'wpfc_sermon_series' ) || is_tax( 'wpfc_bible_book' ) ) {
 		$query->set('meta_key', 'sermon_date');
 		$query->set('meta_value', date("m/d/Y"));
@@ -1093,4 +1093,7 @@ function wpfc_mp3_duration($mp3_url) {
 
 		return $playtime_string;
 }
+
+// Add Upgrade Functions
+require_once plugin_dir_path( __FILE__ ) . '/includes/upgrade.php';
 ?>
