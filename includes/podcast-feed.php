@@ -12,7 +12,7 @@ $args = array(
 	'orderby' => 'meta_value',
 	'order' => 'DESC'
 );
-query_posts( $args );
+$sermon_podcast_query = new WP_Query($args);	
 
 echo '<?xml version="1.0" encoding="UTF-8"?>' ?>
 
@@ -36,7 +36,7 @@ echo '<?xml version="1.0" encoding="UTF-8"?>' ?>
 		<itunes:category text="<?php echo esc_attr( $settings['itunes_top_category'] ) ?>">
 			<itunes:category text="<?php echo esc_attr( $settings['itunes_sub_category'] ) ?>"/>
 		</itunes:category>
-<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+<?php if ( $sermon_podcast_query->have_posts() ) : while ( $sermon_podcast_query->have_posts() ) : $sermon_podcast_query->the_post(); ?>
 <?php
 global $post;
 $speaker = strip_tags( get_the_term_list( $post->ID, 'wpfc_preacher', '', ' &amp; ', '' ) );
