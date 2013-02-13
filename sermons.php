@@ -337,9 +337,9 @@ function wpfc_sermon_metaboxes( array $meta_boxes ) {
 			array(
 				'name'    => __('Service Type', 'sermon-manager'),
 				'desc'    => __('Select the type of service.', 'sermon-manager'),
-				'id'      => 'service_type',
+				'id'      => 'wpfc_service_type_select',
 				'type'    => 'taxonomy_select',
-				'options' => 'wpfc_service_type',
+				'taxonomy' => 'wpfc_service_type',
 			),
 			array(
 				'name' => __('Main Bible Passage', 'sermon-manager'),
