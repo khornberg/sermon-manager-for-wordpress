@@ -4,7 +4,7 @@ Donate link: http://wpforchurch.com/
 Tags: church, sermon, sermons, preaching, podcasting
 Requires at least: 3.4
 Tested up to: 3.4.2
-Stable tag: 1.5.7
+Stable tag: 1.6
 
 Add audio and video sermons, manage speakers, series, and more to your church website
 
@@ -27,7 +27,7 @@ Display a list of sermon series, preachers, sermon topics, or book of the Bible 
 iTunes podcasting support is now available!
 
 === Available Addons ===
-* [Import MP3 to Sermon Manager](http://www.wpforchurch.com/product/import-mp3-to-sermon-manager/)
+* [Import MP3 to Sermon Manager](http://www.wpforchurch.com/products/import-mp3-to-sermon-manager/)
 * Import from Sermon Browser to Sermon Manager is coming soon! Sign up for the [newsletter](http://www.wpforchurch.com/newsletter/) to make sure you don't miss the announcement!
 
 [DEMO](http://demo.wpforchurch.com/sermon-manager/)
@@ -69,9 +69,10 @@ Visit the [plugin homepage](http://wpforchurch.com/plugins/sermon-manager/ "Serm
 
 == Changelog ==
 
-= 1.5.7 =
+= 1.6 =
+* Improved localization & added French translation
 * Updated mediaelements.js to the latest version
-* Change Service Types to a custom taxonomy so you can add/edit as you wish
+* Change Service Types to a custom taxonomy so you can add/edit as you wish (you'll see an admin notice to refresh your database)
 
 = 1.5.6 =
 * Added comma separator in case of multiple speakers or multiple series
