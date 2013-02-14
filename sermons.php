@@ -516,6 +516,26 @@ function series_template_include($template) {
 		return $template;
 }
 
+// Include template for displaying service types
+function series_template_include($template) {
+		if(get_query_var('taxonomy') == 'wpfc_service_type') {
+			if(file_exists(get_stylesheet_directory() . '/taxonomy-wpfc_service_type.php'))
+				return get_stylesheet_directory() . '/taxonomy-wpfc_service_type.php';
+			return plugin_dir_path(__FILE__) . '/views/taxonomy-wpfc_service_type.php';
+		}
+		return $template;
+}
+
+// Include template for displaying sermons by book
+function series_template_include($template) {
+		if(get_query_var('taxonomy') == 'wpfc_bible_book') {
+			if(file_exists(get_stylesheet_directory() . '/taxonomy-wpfc_bible_book.php'))
+				return get_stylesheet_directory() . '/taxonomy-wpfc_bible_book.php';
+			return plugin_dir_path(__FILE__) . '/views/taxonomy-wpfc_bible_book.php';
+		}
+		return $template;
+}
+
 // Add scripts only to single sermon pages
 add_action('wp_enqueue_scripts', 'add_wpfc_js');
 function add_wpfc_js() {
