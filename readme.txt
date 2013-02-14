@@ -24,9 +24,11 @@ Display a grid of images assigned to speakers or series with a new shortcode [se
 
 Display a list of sermon series, preachers, sermon topics, or book of the Bible with a new shortcode [list-sermons]
 
-iTunes podcasting support is now available!
+iTunes podcasting support is available!
 
-=== Available Addons ===
+Would you like to help develop Sermon Manager? Fork it on [Bit Bucket](https://bitbucket.org/wpforchurch/sermon-manager-for-wordpress)
+
+= Available Addons =
 * [Import MP3 to Sermon Manager](http://www.wpforchurch.com/products/import-mp3-to-sermon-manager/)
 * Import from Sermon Browser to Sermon Manager is coming soon! Sign up for the [newsletter](http://www.wpforchurch.com/newsletter/) to make sure you don't miss the announcement!
 
