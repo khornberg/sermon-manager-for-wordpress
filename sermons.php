@@ -3,7 +3,7 @@
 Plugin Name: Sermon Manager for WordPress
 Plugin URI: http://www.wpforchurch.com/products/sermon-manager-for-wordpress/
 Description: Add audio and video sermons, manage speakers, series, and more. Visit <a href="http://wpforchurch.com" target="_blank">Wordpress for Church</a> for tutorials and support.
-Version: 1.5.6
+Version: 1.6
 Author: Jack Lamb
 Author URI: http://www.wpforchurch.com/
 License: GPL2
@@ -516,6 +516,26 @@ function series_template_include($template) {
 		return $template;
 }
 
+// Include template for displaying service types
+function service_type_template_include($template) {
+		if(get_query_var('taxonomy') == 'wpfc_service_type') {
+			if(file_exists(get_stylesheet_directory() . '/taxonomy-wpfc_service_type.php'))
+				return get_stylesheet_directory() . '/taxonomy-wpfc_service_type.php';
+			return plugin_dir_path(__FILE__) . '/views/taxonomy-wpfc_service_type.php';
+		}
+		return $template;
+}
+
+// Include template for displaying sermons by book
+function bible_book_template_include($template) {
+		if(get_query_var('taxonomy') == 'wpfc_bible_book') {
+			if(file_exists(get_stylesheet_directory() . '/taxonomy-wpfc_bible_book.php'))
+				return get_stylesheet_directory() . '/taxonomy-wpfc_bible_book.php';
+			return plugin_dir_path(__FILE__) . '/views/taxonomy-wpfc_bible_book.php';
+		}
+		return $template;
+}
+
 // Add scripts only to single sermon pages
 add_action('wp_enqueue_scripts', 'add_wpfc_js');
 function add_wpfc_js() {
@@ -749,7 +769,7 @@ function render_wpfc_sermon_archive() {
 		<div class="wpfc_sermon_meta cf">
 			<p>	
 				<?php 
-					wpfc_sermon_date(get_option('date_format'), '<span class="sermon_date">', '</span> '); wpfc_sermon_meta('service_type', ' <span class="service_type">(', ')</span> ');
+					wpfc_sermon_date(get_option('date_format'), '<span class="sermon_date">', '</span> '); echo the_terms( $post->ID, 'wpfc_service_type',  ' <span class="service_type">(', ' ', ')</span>');
 			?></p><p><?php
 
 					wpfc_sermon_meta('bible_passage', '<span class="bible_passage">Bible Text: ', '</span> | ');
@@ -944,7 +964,7 @@ function render_wpfc_sermon_single() {
 		<div class="wpfc_sermon_meta cf">
 			<p>	
 				<?php 
-					wpfc_sermon_date(get_option('date_format'), '<span class="sermon_date">', '</span> '); wpfc_sermon_meta('service_type', ' <span class="service_type">(', ')</span> ');
+					wpfc_sermon_date(get_option('date_format'), '<span class="sermon_date">', '</span> '); echo the_terms( $post->ID, 'wpfc_service_type',  ' <span class="service_type">(', ' ', ')</span>');
 			?></p><p><?php
 					wpfc_sermon_meta('bible_passage', '<span class="bible_passage">Bible Text: ', '</span> | ');
 					echo the_terms( $post->ID, 'wpfc_preacher',  '<span class="preacher_name">', ', ', '</span>');
@@ -976,7 +996,7 @@ function render_wpfc_sermon_excerpt() {
 		<div class="wpfc_sermon_meta cf">
 			<p>	
 				<?php 
-					wpfc_sermon_date(get_option('date_format'), '<span class="sermon_date">', '</span> '); wpfc_sermon_meta('service_type', ' <span class="service_type">(', ')</span> ');
+					wpfc_sermon_date(get_option('date_format'), '<span class="sermon_date">', '</span> '); echo the_terms( $post->ID, 'wpfc_service_type',  ' <span class="service_type">(', ' ', ')</span>');
 			?></p><p><?php
 					wpfc_sermon_meta('bible_passage', '<span class="bible_passage">Bible Text: ', '</span> | ');
 					echo the_terms( $post->ID, 'wpfc_preacher',  '<span class="preacher_name">', ', ', '</span>');
