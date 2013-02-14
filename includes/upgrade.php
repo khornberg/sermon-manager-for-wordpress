@@ -22,7 +22,7 @@ function wpfc_sermon_warning_html() {
 	?>
 	<div id='wpfc-sermon-update-warning' class='updated fade'>
 		<?php $wpfc_settings_url = admin_url( 'edit.php?post_type=wpfc_sermon&page=sermon-manager-for-wordpress/includes/options.php'); ?>
-		<p><strong><?php _e('Sermon Manager is almost ready.', 'sermon-manager');?></strong> <?php _e('You must', 'sermon-manager');?> <a href="<?php echo $wpfc_settings_url; ?>"><?php _e('refresh your settings', 'sermon-manager');?></a></p>
+		<p><strong><?php _e('Sermon Manager is almost ready.', 'sermon-manager');?></strong> <?php _e('You must', 'sermon-manager');?> <a href="<?php echo $wpfc_settings_url; ?>"><?php _e('resave your settings for it to function correctly!!!', 'sermon-manager');?></a></p>
 	</div>
 	<?php
 }
