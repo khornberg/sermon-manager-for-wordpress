@@ -517,7 +517,7 @@ function series_template_include($template) {
 }
 
 // Include template for displaying service types
-function series_template_include($template) {
+function service_type_template_include($template) {
 		if(get_query_var('taxonomy') == 'wpfc_service_type') {
 			if(file_exists(get_stylesheet_directory() . '/taxonomy-wpfc_service_type.php'))
 				return get_stylesheet_directory() . '/taxonomy-wpfc_service_type.php';
@@ -527,7 +527,7 @@ function series_template_include($template) {
 }
 
 // Include template for displaying sermons by book
-function series_template_include($template) {
+function bible_book_template_include($template) {
 		if(get_query_var('taxonomy') == 'wpfc_bible_book') {
 			if(file_exists(get_stylesheet_directory() . '/taxonomy-wpfc_bible_book.php'))
 				return get_stylesheet_directory() . '/taxonomy-wpfc_bible_book.php';
