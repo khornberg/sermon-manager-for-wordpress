@@ -785,7 +785,7 @@ function render_wpfc_sermon_archive() {
 function render_wpfc_sorting() { ?>
 <div id="wpfc_sermon_sorting">
 	<span class="sortPreacher">
-	<form action="<?php bloginfo('url'); ?>" method="get">
+	<form action="<?php echo home_url(); ?>" method="get">
 		<select name="wpfc_preacher" id="wpfc_preacher" onchange="return this.form.submit()">
 			<option value=""><?php _e('Sort by Preacher', 'sermon-manager'); ?></option>
 			<?php wpfc_get_term_dropdown('wpfc_preacher'); ?>
@@ -794,7 +794,7 @@ function render_wpfc_sorting() { ?>
 	</form>
 	</span>
 	<span class="sortSeries">
-	<form action="<?php bloginfo('url'); ?>" method="get">
+	<form action="<?php echo home_url(); ?>" method="get">
 		<select name="wpfc_sermon_series" id="wpfc_sermon_series" onchange="return this.form.submit()">
 			<option value=""><?php _e('Sort by Series', 'sermon-manager'); ?></option>
 			<?php wpfc_get_term_dropdown('wpfc_sermon_series'); ?>
@@ -803,7 +803,7 @@ function render_wpfc_sorting() { ?>
 	</form>
 	</span>
 	<span class="sortTopics">
-	<form action="<?php bloginfo('url'); ?>" method="get">
+	<form action="<?php echo home_url(); ?>" method="get">
 		<select name="wpfc_sermon_topics" id="wpfc_sermon_topics" onchange="return this.form.submit()">
 			<option value=""><?php _e('Sort by Topic', 'sermon-manager'); ?></option>
 			<?php wpfc_get_term_dropdown('wpfc_sermon_topics'); ?>
@@ -812,7 +812,7 @@ function render_wpfc_sorting() { ?>
 	</form>	
 	</span>
 	<span class="sortBooks">
-	<form action="<?php bloginfo('url'); ?>" method="get">
+	<form action="<?php echo home_url(); ?>" method="get">
 		<select name="wpfc_bible_book" id="wpfc_bible_book" onchange="return this.form.submit()">
 			<option value=""><?php _e('Sort by Book', 'sermon-manager'); ?></option>
 			<?php wpfc_get_term_dropdown('wpfc_bible_book'); ?>
