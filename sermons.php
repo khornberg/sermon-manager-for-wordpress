@@ -16,7 +16,7 @@ if(preg_match("#^sermons.php#", basename($_SERVER['PHP_SELF']))) exit();
 function wpfc_sermon_translations() {
 	load_plugin_textdomain( 'sermon-manager', false, basename( dirname( __FILE__ ) ) . '/languages' );
 }
-add_action( 'init', 'wpfc_sermon_translations' );
+add_action( 'plugins_loaded', 'wpfc_sermon_translations' );
 
 // Add Images for Custom Taxonomies
 require_once plugin_dir_path( __FILE__ ) . 'includes/taxonomy-images/taxonomy-images.php';
