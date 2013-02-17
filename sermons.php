@@ -7,6 +7,7 @@ Version: 1.6
 Author: Jack Lamb
 Author URI: http://www.wpforchurch.com/
 License: GPL2
+Text Domain: sermon-manager
 */
 
 // Security check to see if someone is accessing this file directly
