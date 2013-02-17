@@ -133,7 +133,7 @@ function wpfc_display_sermons_shortcode($atts) {
 	</div>
 	<?php
 	endwhile; //end loop
-	if(function_exists(wp_pagenavi)) : ?>
+	if( function_exists("wp_pagenavi") ) : ?>
 		<div id="sermon-navigation"> 
 			<?php wp_pagenavi( array( 'query' => $listing ) ); ?>
 		</div>
