@@ -7,6 +7,7 @@ Version: 1.6
 Author: Jack Lamb
 Author URI: http://www.wpforchurch.com/
 License: GPL2
+Text Domain: sermon-manager
 */
 
 // Security check to see if someone is accessing this file directly
@@ -16,7 +17,7 @@ if(preg_match("#^sermons.php#", basename($_SERVER['PHP_SELF']))) exit();
 function wpfc_sermon_translations() {
 	load_plugin_textdomain( 'sermon-manager', false, basename( dirname( __FILE__ ) ) . '/languages' );
 }
-add_action( 'init', 'wpfc_sermon_translations' );
+add_action( 'plugins_loaded', 'wpfc_sermon_translations' );
 
 // Add Images for Custom Taxonomies
 require_once plugin_dir_path( __FILE__ ) . 'includes/taxonomy-images/taxonomy-images.php';
@@ -785,7 +786,7 @@ function render_wpfc_sermon_archive() {
 function render_wpfc_sorting() { ?>
 <div id="wpfc_sermon_sorting">
 	<span class="sortPreacher">
-	<form action="<?php bloginfo('url'); ?>" method="get">
+	<form action="<?php echo home_url(); ?>" method="get">
 		<select name="wpfc_preacher" id="wpfc_preacher" onchange="return this.form.submit()">
 			<option value=""><?php _e('Sort by Preacher', 'sermon-manager'); ?></option>
 			<?php wpfc_get_term_dropdown('wpfc_preacher'); ?>
@@ -794,7 +795,7 @@ function render_wpfc_sorting() { ?>
 	</form>
 	</span>
 	<span class="sortSeries">
-	<form action="<?php bloginfo('url'); ?>" method="get">
+	<form action="<?php echo home_url(); ?>" method="get">
 		<select name="wpfc_sermon_series" id="wpfc_sermon_series" onchange="return this.form.submit()">
 			<option value=""><?php _e('Sort by Series', 'sermon-manager'); ?></option>
 			<?php wpfc_get_term_dropdown('wpfc_sermon_series'); ?>
@@ -803,7 +804,7 @@ function render_wpfc_sorting() { ?>
 	</form>
 	</span>
 	<span class="sortTopics">
-	<form action="<?php bloginfo('url'); ?>" method="get">
+	<form action="<?php echo home_url(); ?>" method="get">
 		<select name="wpfc_sermon_topics" id="wpfc_sermon_topics" onchange="return this.form.submit()">
 			<option value=""><?php _e('Sort by Topic', 'sermon-manager'); ?></option>
 			<?php wpfc_get_term_dropdown('wpfc_sermon_topics'); ?>
@@ -812,7 +813,7 @@ function render_wpfc_sorting() { ?>
 	</form>	
 	</span>
 	<span class="sortBooks">
-	<form action="<?php bloginfo('url'); ?>" method="get">
+	<form action="<?php echo home_url(); ?>" method="get">
 		<select name="wpfc_bible_book" id="wpfc_bible_book" onchange="return this.form.submit()">
 			<option value=""><?php _e('Sort by Book', 'sermon-manager'); ?></option>
 			<?php wpfc_get_term_dropdown('wpfc_bible_book'); ?>
@@ -907,11 +908,11 @@ function render_sermon_image($size) {
 // render files section
 function wpfc_sermon_files() {
 	if ( get_wpfc_sermon_meta('sermon_video') ) { 
-		echo '<div id="wpfc_sermon-video" class="cf">';
+		echo '<div class="wpfc_sermon-video cf">';
 			echo do_shortcode( get_wpfc_sermon_meta('sermon_video')); 
 		echo '</div>';								
 	} elseif ( !get_wpfc_sermon_meta('sermon_video') && get_wpfc_sermon_meta('sermon_audio') ) {
-		echo '<div id="wpfc_sermon-audio" class="cf">';?>
+		echo '<div class="wpfc_sermon-audio cf">';?>
 			<script>
 				jQuery.noConflict();
 				jQuery(document).ready(function(){
@@ -924,7 +925,7 @@ function wpfc_sermon_files() {
 		echo '</div>';
 	} 
 	if ( get_wpfc_sermon_meta('sermon_notes') ) {
-		echo '<div id="wpfc_sermon-notes" class="cf">';
+		echo '<div class="wpfc_sermon-notes cf">';
 			echo '<a href="' . get_wpfc_sermon_meta('sermon_notes') . '" class="sermon-notes">Notes</a>';
 		echo '</div>';
 	}
@@ -957,8 +958,8 @@ function wpfc_sermon_attachments() {
 // render single sermon entry
 function render_wpfc_sermon_single() { 
 	global $post; ?>
-	<div id="wpfc_sermon_wrap" class="cf">
-		<div id="wpfc_sermon_image">
+	<div class="wpfc_sermon_wrap cf">
+		<div class="wpfc_sermon_image">
 			<?php render_sermon_image('sermon_small'); ?>
 		</div>
 		<div class="wpfc_sermon_meta cf">
@@ -973,7 +974,7 @@ function render_wpfc_sermon_single() {
 			</p>
 		</div>
 	</div>
-	<div id="wpfc_sermon" class="cf">		  
+	<div class="wpfc_sermon cf">		  
 				
 		<?php wpfc_sermon_files(); ?>
 		
@@ -989,8 +990,8 @@ function render_wpfc_sermon_single() {
 // render single sermon entry
 function render_wpfc_sermon_excerpt() { 
 	global $post;?>
-	<div id="wpfc_sermon_wrap" class="cf">
-		<div id="wpfc_sermon_image">
+	<div class="wpfc_sermon_wrap cf">
+		<div class="wpfc_sermon_image">
 			<?php render_sermon_image('sermon_small'); ?>
 		</div>
 		<div class="wpfc_sermon_meta cf">
@@ -1005,7 +1006,7 @@ function render_wpfc_sermon_excerpt() {
 			</p>
 		</div>
 		<?php	$sermonoptions = get_option('wpfc_options'); if ( isset($sermonoptions['archive_player']) == '1') { ?>
-			<div id="wpfc_sermon" class="cf">		  	
+			<div class="wpfc_sermon cf">		  	
 				<?php wpfc_sermon_files(); ?>
 			</div>
 		<?php } ?>

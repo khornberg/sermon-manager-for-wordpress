@@ -1,32 +1,32 @@
 /* Sermon Manager CSS http://www.wpforchurch.com/products/sermon-manager-for-wordpress/ */
 
-.single-wpfc_sermon #wpfc_sermon_image {
+.single-wpfc_sermon .wpfc_sermon_image {
     margin: 10px 0 10px;
 }
 
-#wpfc_sermon_image_wide {
+.wpfc_sermon_image_wide {
 	max-width: 100%;
 	float: left;
 }
 
-#wpfc_sermon_image_wide img{
+.wpfc_sermon_image_wide img{
 	max-width: 100%;
 	height: auto;
 	margin: 0 0 10px 0;
 }
 
-#wpfc_sermon_image {
+.wpfc_sermon_image {
 	max-width: 100%;
 	float: left;
 }
 
-#wpfc_sermon_image img{
+.wpfc_sermon_image img{
 	max-width: 100%;
 	height: auto;
 	margin: 0 10px 0!important;
 }
 
-#wpfc_sermon_wrap {
+.wpfc_sermon_wrap {
 	padding-bottom: 20px;
 	clear:both;
 }
@@ -36,7 +36,7 @@
     margin: 0 10px 10px 0;
 }
 
-.single-wpfc_sermon #wpfc_sermon_wrap {
+.single-wpfc_sermon .wpfc_sermon_wrap {
 	padding-bottom: 0px;
 }
 
@@ -60,22 +60,22 @@
 }
 
 /* controls padding around video embeds */
-#wpfc_sermon-video {
+.wpfc_sermon-video {
 	margin: 10px 0 10px;
 	max-width: 100%;
 	clear:both;
 }
-#wpfc_sermon-video iframe, #wpfc_sermon-video embed {
+.wpfc_sermon-video iframe, .wpfc_sermon-video embed {
 	max-width: 100%;
 }
 .mejs-container, #wpfc_sermon iframe, #wpfc_sermon object, #wpfc_sermon embed {max-width: 100%;}
 
-#wpfc_sermon-notes {
+.wpfc_sermon-notes {
 	margin: 10px 0 10px;
 }
 
 /* controls padding around audio player */
-#wpfc_sermon-audio {
+.wpfc_sermon-audio {
 	margin: 10px 0 10px;
 	max-width: 100%;
 	clear:both;
