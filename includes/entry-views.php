@@ -57,6 +57,9 @@ function wpfc_entry_views_load() {
 		/* Check if the post type supports the 'entry-views' feature. */
 		if ( post_type_supports( $post->post_type, 'entry-views' ) ) {
 
+			if(empty($wpfc_entry_views)){
+                                $wpfc_entry_views = new stdClass();
+            }
 			/* Set the post ID for later use because we wouldn't want a custom query to change this. */
 			$wpfc_entry_views->post_id = $post->ID;
 
