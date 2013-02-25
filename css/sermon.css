@@ -109,7 +109,8 @@
 	padding-left: 18px!important;
 	background: url(icons/mic-icon.png) no-repeat left;
 	list-style: none!important;
-	margin: 0;
+    margin: 0px 0 6px;
+    line-height: 1.1em;
 }
 .widget_recent_sermons span {
 	font-size: 0.75em;
