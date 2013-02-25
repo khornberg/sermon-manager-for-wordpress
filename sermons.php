@@ -661,7 +661,7 @@ class WP4C_Recent_Sermons extends WP_Widget {
 		<?php  while ($r->have_posts()) : $r->the_post(); ?>
 		<?php global $post; ?>
 		<li>
-		<a href="<?php the_permalink() ?>" title="<?php echo esc_attr(get_the_title() ? get_the_title() : get_the_ID()); ?>"><?php if ( get_the_title() ) the_title(); else the_ID(); ?></a><br/>
+		<a href="<?php the_permalink() ?>" title="<?php echo esc_attr(get_the_title() ? get_the_title() : get_the_ID()); ?>"><?php if ( get_the_title() ) the_title(); else the_ID(); ?></a>
 		<span class="meta">
 			<?php 
 			$terms = get_the_terms( $post->ID, 'wpfc_preacher' );

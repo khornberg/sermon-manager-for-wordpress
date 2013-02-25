@@ -115,6 +115,7 @@
 	font-size: 0.75em;
 	font-color: #444444;
 	margin: 0;
+	display: block;
 }
 
 #sermon-navigation {padding-bottom: 15px;}
