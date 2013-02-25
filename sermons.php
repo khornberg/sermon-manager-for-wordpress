@@ -479,6 +479,8 @@ if ( isset($sermonoptions['template']) == '1' ) {
 	add_filter('template_include', 'sermon_template_include');
 	add_filter('template_include', 'preacher_template_include');
 	add_filter('template_include', 'series_template_include');
+	add_filter('template_include', 'service_type_template_include');
+	add_filter('template_include', 'bible_book_template_include');
 }
 
 // Include template for displaying sermons by Preacher
