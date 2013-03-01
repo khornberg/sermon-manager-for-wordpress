@@ -151,7 +151,7 @@ function wpfc_sermon_options_render_form() {
 				</tr>
 				<!-- Common Slug -->
 				<tr valign="top">
-					<th scope="row"><?php _e('Common Base Slug. this is for users who want to have a common base slug across all taxonomies. e.g. sermons/preacher or sermons/series.', 'sermon-manager'); ?></th>
+					<th scope="row"><?php _e('Common Base Slug - this is for users who want to have a common base slug across all taxonomies, e.g. sermons/preacher or sermons/series.', 'sermon-manager'); ?></th>
 					<td>
 						<label><input name="wpfc_options[common_base_slug]" type="checkbox" value="1" <?php if (isset($options['common_base_slug'])) { checked('1', $options['common_base_slug']); } ?> /> <?php _e('Enable a common base slug across all taxonomies', 'sermon-manager'); ?></label>
 					</td>

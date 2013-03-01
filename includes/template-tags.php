@@ -348,4 +348,69 @@ function wpfc_podcast_url($feed_type = false){
 		return $itunes_url . '/feed/podcast'; 
 	} 
 }
+
+/**
+ * Display series info on an individual sermon
+ */
+function wpfc_footer_series() {
+	global $post;
+	$terms = get_the_terms( $post->ID , 'wpfc_sermon_series' );
+	if($terms) {
+		foreach( $terms as $term ) {
+			if ($term->description) {
+				echo '<div class="single_sermon_info_box series clearfix">';
+				echo '<div class="sermon-footer-description clearfix">';
+				echo '<h3 class="single-preacher-name"><a href="' .get_term_link($term->slug, 'wpfc_sermon_series') .'">'.$term->name.'</a></h3>';
+				/* Image */
+				print apply_filters( 'sermon-images-list-the-terms', '', array(
+					'attr' => array(
+						'class' => 'alignleft',
+						),
+					'image_size'   => 'thumbnail',
+					'taxonomy'     => 'wpfc_sermon_series',
+					'after' => '</div>',
+					'after_image' => '', 
+					'before' => '<div class="sermon-footer-image">', 
+					'before_image' => ''
+				) );
+				/* Description */
+				echo $term->description.'</div>';
+				echo '</div>';
+			}
+		}
+	}
+}
+
+/**
+ * Display preacher info on an individual sermon
+ */
+function wpfc_footer_preacher() {
+	global $post;
+	$terms = get_the_terms( $post->ID , 'wpfc_preacher' );
+	if($terms) {
+		foreach( $terms as $term ) {
+			if ($term->description) {
+				echo '<div class="single_sermon_info_box preacher clearfix">';
+				echo '<div class="sermon-footer-description clearfix">';
+				echo '<h3 class="single-preacher-name"><a href="' .get_term_link($term->slug, 'wpfc_preacher') .'">'.$term->name.'</a></h3>';
+				/* Image */
+				print apply_filters( 'sermon-images-list-the-terms', '', array(
+					'attr' => array(
+						'class' => 'alignleft',
+						),
+					'image_size'   => 'thumbnail',
+					'taxonomy'     => 'wpfc_preacher',
+					'after' => '</div>',
+					'after_image' => '', 
+					'before' => '<div class="sermon-footer-image">', 
+					'before_image' => ''
+				) );
+				/* Description */
+				echo $term->description.'</div>';
+				echo '</div>';
+			}
+		}
+	}
+}
+
 ?>

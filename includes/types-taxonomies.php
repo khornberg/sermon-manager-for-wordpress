@@ -26,9 +26,8 @@ function generate_wpfc_slug($slug_name = NULL) {
 
  // Create sermon Custom Post Type
 add_action('init', 'create_wpfc_sermon_types');
-function create_wpfc_sermon_types() 
-{
-  $plugin = WPFC_SERMONS;
+function create_wpfc_sermon_types() {
+  
   $labels = array(
     'name' => _x( 'Sermons', 'sermon-manager'),
     'singular_name' => _x( 'Sermon', 'sermon-manager'),
@@ -63,8 +62,7 @@ function create_wpfc_sermon_types()
 
 //create new taxonomies: preachers, sermon series, bible books & topics
 add_action( 'init', 'create_wpfc_sermon_taxonomies', 0 );
-function create_wpfc_sermon_taxonomies()
-{
+function create_wpfc_sermon_taxonomies() {
 
 //Preachers
 $labels = array(	
