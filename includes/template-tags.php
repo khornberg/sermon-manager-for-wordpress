@@ -172,13 +172,13 @@ function wpfc_sermon_date( $args, $before = '', $after = '' ) {
 // Change published date to sermon date on frontend display
 function wpfc_sermon_date_filter() {
 	global $post;
-	$ugly_date = get_post_meta($post->ID, 'sermon_date', 'true');
-	$date = date(get_option('date_format'), $ugly_date);
-		return $date;
+	if ( 'wpfc_sermon' == get_post_type() ) {
+		$ugly_date = get_post_meta($post->ID, 'sermon_date', 'true');
+		$date = date(get_option('date_format'), $ugly_date);
+			return $date;
+	}
 }
-if ( 'wpfc_sermon' == get_post_type() ) {
-	add_filter('get_the_date', 'wpfc_sermon_date_filter');
-}
+add_filter('get_the_date', 'wpfc_sermon_date_filter');
 
 // Change the_author to the preacher on frontend display
 function wpfc_sermon_author_filter() {
