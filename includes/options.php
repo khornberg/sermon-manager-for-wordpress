@@ -34,6 +34,43 @@ function wpfc_add_options_page() {
 	add_action( 'admin_print_styles-' . $page, 'wpfc_sermon_admin_styles' );
 }
 
+// Plugin Meta Links.
+function wpfc_sermon_manager_plugin_row_meta( $links, $file ) {
+	static $plugin_name = '';
+
+	if ( empty( $plugin_name ) ) {
+		$plugin_name = plugin_basename( __FILE__ );
+	}
+
+	if ( $plugin_name != $file ) {
+		return $links;
+	}
+
+	$link = wpfc_sermon_manager_settings_page_link( __( 'Settings', 'sermon-manager' ) );
+	if ( ! empty( $link ) ) {
+		$links[] = $link;
+	}
+
+	$links[] = '<a href="http://www.wpforchurch.com/support/" target="_blank">' . __( 'Support', 'sermon-manager' ) . '</a>';
+
+	return $links;
+}
+add_filter( 'plugin_row_meta', 'wpfc_sermon_manager_plugin_row_meta', 10, 2 );
+
+// Settings Page Link.
+function wpfc_sermon_manager_settings_page_link( $link_text = '' ) {
+	if ( empty( $link_text ) ) {
+		$link_text = __( 'Manage Settings', 'sermon-manager' );
+	}
+
+	$link = '';
+	if ( current_user_can( 'manage_options' ) ) {
+		$link = '<a href="' . admin_url( 'edit.php?post_type=wpfc_sermon&page=sermon-manager-for-wordpress/includes/options.php' ) . '">' . esc_html( $link_text ) . '</a>';
+	}
+
+	return $link;
+}
+
 // Add scripts
 function wpfc_sermon_admin_styles() {
 	wp_enqueue_script('media-upload');
