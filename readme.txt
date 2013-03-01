@@ -4,7 +4,7 @@ Donate link: http://wpforchurch.com/
 Tags: church, sermon, sermons, preaching, podcasting
 Requires at least: 3.4
 Tested up to: 3.4.2
-Stable tag: 1.6
+Stable tag: 1.7
 
 Add audio and video sermons, manage speakers, series, and more to your church website
 
@@ -70,6 +70,19 @@ Visit the [plugin homepage](http://wpforchurch.com/plugins/sermon-manager/ "Serm
 2. Sermon Files
 
 == Changelog ==
+= 1.7 =
+* Improved many areas of the code; organized files
+* Made a new permalink structure possible with a common base slug across all taxonomies, e.g. sermons/preacher or sermons/series.
+* Added new template tag for the podcast url
+* Add series, preacher, topic, and book to post class
+* Trim taxonomy description in Admin
+* Improve widget CSS
+* Add missing filter for template files
+* Add template tags to show preacher and series info on individual sermons
+* Allow service type to be empty
+* Use date option set in WordPress settings instead of hardcoded format
+* Resolve $wpfc_entry_views error with PHP 5.4
+* Cleaned up CSS ids and classes to be compliant code
 
 = 1.6 =
 * Improved localization & added French translation
