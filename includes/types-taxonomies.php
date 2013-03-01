@@ -3,6 +3,26 @@
  * Creation of Sermon Post Types and Taxonomies
  * Also all meta boxes
  */
+ 
+// Determine the correct slug name based on options
+function generate_wpfc_slug($slug_name = NULL) {
+    $sermon_settings = get_option('wpfc_options');
+    $archive_slug = $sermon_settings['archive_slug'];
+    if(empty($archive_slug))
+    {
+    	$archive_slug = 'sermons';
+    }
+
+    if (!isset($slug_name)) {
+    	return array ('slug' => $archive_slug, 'with_front' => false);
+    }
+
+    if (isset($sermon_settings['common_base_slug']) == '1') {
+    	return array ('slug' => $archive_slug."/".$slug_name, 'with_front' => false);
+    } else {
+    	return array ('slug' => $slug_name, 'with_front' => false);
+    }
+}
 
  // Create sermon Custom Post Type
 add_action('init', 'create_wpfc_sermon_types');
@@ -24,12 +44,6 @@ function create_wpfc_sermon_types()
     'menu_name' => _x( 'Sermons', 'sermon-manager'),
   );
 
-    $sermon_settings = get_option('wpfc_options');
-	$archive_slug = $sermon_settings['archive_slug'];
-	if(empty($archive_slug)):
-		$archive_slug = 'sermons';
-	endif;
-
   $args = array(
     'labels' => $labels,
     'public' => true,
@@ -40,7 +54,7 @@ function create_wpfc_sermon_types()
     'menu_icon' => plugins_url('/img/book-open-bookmark.png', __FILE__),
 	'capability_type' => 'post',
     'has_archive' => true, 
-    'rewrite' => array( 'slug' => $archive_slug ),
+    'rewrite' => generate_wpfc_slug(),
     'hierarchical' => false,
     'supports' => array( 'title', 'comments', 'thumbnail', 'entry-views' )
   ); 
@@ -76,7 +90,7 @@ register_taxonomy('wpfc_preacher','wpfc_sermon', array(
 	'labels' => $labels, 
 	'show_ui' => true,
 	'query_var' => true,
-    'rewrite' => array ( 'slug' => 'preacher' ),
+    'rewrite' => generate_wpfc_slug('preacher'),
 ));
 
 //Sermon Series
@@ -104,7 +118,7 @@ register_taxonomy('wpfc_sermon_series','wpfc_sermon', array(
 	'labels' => $labels, 
 	'show_ui' => true,
 	'query_var' => true,
-    'rewrite' => array ( 'slug' => 'sermon-series' ),
+    'rewrite' => generate_wpfc_slug('series'),
 ));
 
 //Sermon Topics
@@ -131,7 +145,7 @@ register_taxonomy('wpfc_sermon_topics','wpfc_sermon', array(
 	'labels' => $labels, 
 	'show_ui' => true,
 	'query_var' => true,
-    'rewrite' => array ( 'slug' => 'topics' ),
+    'rewrite' => generate_wpfc_slug('topics'),
 ));
 
 //Books of the Bible
@@ -158,7 +172,7 @@ register_taxonomy('wpfc_bible_book','wpfc_sermon', array(
 	'labels' => $labels, 
 	'show_ui' => true,
 	'query_var' => true,
-    'rewrite' => array ( 'slug' => 'book' ),
+    'rewrite' => generate_wpfc_slug('book'),
 ));
 
 //Service Type
@@ -185,7 +199,7 @@ register_taxonomy('wpfc_service_type','wpfc_sermon', array(
 	'labels' => $labels, 
 	'show_ui' => true,
 	'query_var' => true,
-    'rewrite' => array ( 'slug' => 'service-type' ),
+    'rewrite' => generate_wpfc_slug('service-type'),
 ));
 }
 

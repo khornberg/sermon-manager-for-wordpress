@@ -17,7 +17,8 @@ function wpfc_add_defaults() {
 		$arr = array(	"bibly" => "0",
 						"bibly_version" => "KJV",
 						"archive_slug" => "sermons",
-						"archive_title" => "Sermons"
+						"archive_title" => "Sermons",
+						"common_base_slug" => "0"
 		);
 		update_option('wpfc_options', $arr);
 	}
@@ -145,28 +146,38 @@ function wpfc_sermon_options_render_form() {
 				<tr valign="top">
 					<th scope="row"><?php _e('Archive Page Slug', 'sermon-manager'); ?></th>
 					<td>
-						<input type="text" size="65" name="wpfc_options[archive_slug]" value="<?php echo $options['archive_slug']; ?>" /> <span style="color:#666666;margin-left:2px;"><?php _e('Go to Settings &rarr; Permalinks and re-save after changing this!', 'sermon-manager'); ?></span>
+						<input type="text" size="65" name="wpfc_options[archive_slug]" value="<?php echo $options['archive_slug']; ?>" />
 					</td>
 				</tr>
+				<!-- Common Slug -->
+				<tr valign="top">
+					<th scope="row"><?php _e('Common Base Slug. this is for users who want to have a common base slug across all taxonomies. e.g. sermons/preacher or sermons/series.', 'sermon-manager'); ?></th>
+					<td>
+						<label><input name="wpfc_options[common_base_slug]" type="checkbox" value="1" <?php if (isset($options['common_base_slug'])) { checked('1', $options['common_base_slug']); } ?> /> <?php _e('Enable a common base slug across all taxonomies', 'sermon-manager'); ?></label>
+					</td>
+				</tr>
+				<!-- Enable Template Files -->
 				<tr valign="top">
 					<th scope="row"><?php _e('Enable Template Files - this is for users upgrading from an older version who have issues with version 1.5+.', 'sermon-manager'); ?></th>
 					<td>
 						<label><input name="wpfc_options[template]" type="checkbox" value="1" <?php if (isset($options['template'])) { checked('1', $options['template']); } ?> /> <?php _e('Enable template files found in the /views folder', 'sermon-manager'); ?></label><br />
 					</td>
 				</tr>
+				<!-- Disable Sermon Styles -->
 				<tr valign="top">
 					<th scope="row"><?php _e('Disable Sermon Styles', 'sermon-manager'); ?></th>
 					<td>
 						<label><input name="wpfc_options[css]" type="checkbox" value="1" <?php if (isset($options['css'])) { checked('1', $options['css']); } ?> /> <?php _e('Disable Sermon CSS. If you do this, you should copy the styles from sermons.css and include them in your theme CSS.', 'sermon-manager'); ?></label><br />
 					</td>
 				</tr>
+				<!-- Display player on archive -->
 				<tr valign="top">
 					<th scope="row"><?php _e('Display audio player or video on archive pages', 'sermon-manager'); ?></th>
 					<td>
 						<label><input name="wpfc_options[archive_player]" type="checkbox" value="1" <?php if (isset($options['archive_player'])) { checked('1', $options['archive_player']); } ?> /> <?php _e('Display an audio player or video embed in the archive listing.', 'sermon-manager'); ?></label><br />
 					</td>
 				</tr>
-				<!-- temp -->
+				<!-- Plugin Version - Hidden field -->
 				<tr valign="top" style="display:none;">
 					<th scope="row"><?php _e('Version ', 'sermon-manager'); ?><?php echo $options['version']; ?></th>
 					<td>			
@@ -396,6 +407,10 @@ function wpfc_validate_options($input) {
 	add_option( 'sermon_image_plugin_settings', array(
 		'taxonomies' => array('wpfc_sermon_series', 'wpfc_preacher', 'wpfc_sermon_topics')
 	) );
+	// Flush rewrite rules on save
+    global $wp_rewrite;
+    $wp_rewrite->flush_rules();
+	
 	$input['archive_slug'] =  wp_filter_nohtml_kses($input['archive_slug']); // Sanitize textbox input (strip html tags, and escape characters)
 	$input['archive_title'] =  wp_filter_nohtml_kses($input['archive_title']); // Sanitize textbox input (strip html tags, and escape characters)
 	return $input;
