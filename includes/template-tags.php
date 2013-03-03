@@ -14,17 +14,17 @@ if ( isset($sermonoptions['template']) == '1' ) {
 	add_filter('template_include', 'bible_book_template_include');
 }
 
-// Include template for displaying sermons by Preacher
+// Include template for displaying sermons
 function sermon_template_include($template) {
 		if(get_query_var('post_type') == 'wpfc_sermon') {
 			if ( is_archive() || is_search() ) :
 				if(file_exists(get_stylesheet_directory() . '/archive-wpfc_sermon.php'))
 					return get_stylesheet_directory() . '/archive-wpfc_sermon.php';
-				return plugin_dir_path( __FILE__ ) . '/views/archive-wpfc_sermon.php';
+				return WPFC_SERMONS . '/views/archive-wpfc_sermon.php';
 			else :
 				if(file_exists(get_stylesheet_directory() . '/single-wpfc_sermon.php'))
 					return get_stylesheet_directory() . '/single-wpfc_sermon.php';
-				return plugin_dir_path( __FILE__ ) . '/views/single-wpfc_sermon.php';
+				return WPFC_SERMONS . '/views/single-wpfc_sermon.php';
 			endif;
 		}
 		return $template;
@@ -35,7 +35,7 @@ function preacher_template_include($template) {
 		if(get_query_var('taxonomy') == 'wpfc_preacher') {
 			if(file_exists(get_stylesheet_directory() . '/taxonomy-wpfc_preacher.php')) 
 				return get_stylesheet_directory() . '/taxonomy-wpfc_preacher.php'; 
-			return plugin_dir_path(__FILE__) . '/views/taxonomy-wpfc_preacher.php';	
+			return WPFC_SERMONS . '/views/taxonomy-wpfc_preacher.php';	
 		}
 		return $template;
 }
@@ -45,7 +45,7 @@ function series_template_include($template) {
 		if(get_query_var('taxonomy') == 'wpfc_sermon_series') {
 			if(file_exists(get_stylesheet_directory() . '/taxonomy-wpfc_sermon_series.php'))
 				return get_stylesheet_directory() . '/taxonomy-wpfc_sermon_series.php';
-			return plugin_dir_path(__FILE__) . '/views/taxonomy-wpfc_sermon_series.php';
+			return WPFC_SERMONS . '/views/taxonomy-wpfc_sermon_series.php';
 		}
 		return $template;
 }
@@ -55,7 +55,7 @@ function service_type_template_include($template) {
 		if(get_query_var('taxonomy') == 'wpfc_service_type') {
 			if(file_exists(get_stylesheet_directory() . '/taxonomy-wpfc_service_type.php'))
 				return get_stylesheet_directory() . '/taxonomy-wpfc_service_type.php';
-			return plugin_dir_path(__FILE__) . '/views/taxonomy-wpfc_service_type.php';
+			return WPFC_SERMONS . '/views/taxonomy-wpfc_service_type.php';
 		}
 		return $template;
 }
@@ -65,7 +65,7 @@ function bible_book_template_include($template) {
 		if(get_query_var('taxonomy') == 'wpfc_bible_book') {
 			if(file_exists(get_stylesheet_directory() . '/taxonomy-wpfc_bible_book.php'))
 				return get_stylesheet_directory() . '/taxonomy-wpfc_bible_book.php';
-			return plugin_dir_path(__FILE__) . '/views/taxonomy-wpfc_bible_book.php';
+			return WPFC_SERMONS . '/views/taxonomy-wpfc_bible_book.php';
 		}
 		return $template;
 }

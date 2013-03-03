@@ -14,7 +14,7 @@ Text Domain: sermon-manager
 if(preg_match("#^sermons.php#", basename($_SERVER['PHP_SELF']))) exit();
 
 // Define the plugin URL
-define('WPFC_SERMONS', plugins_url() . '/sermon-manager-for-wordpress');
+define( 'WPFC_SERMONS', plugin_dir_path(__FILE__) );
 
 // Translations
 function wpfc_sermon_translations() {

@@ -5,7 +5,7 @@
 
 // Create custom RSS feed for sermon podcasting
 function wpfc_sermon_podcast_feed() {
-	load_template(plugin_dir_path( __FILE__ ) . 'includes/podcast-feed.php');
+	load_template( WPFC_SERMONS . 'includes/podcast-feed.php');
 }
 add_action('do_feed_podcast', 'wpfc_sermon_podcast_feed', 10, 1);
 
@@ -60,7 +60,7 @@ function wpfc_get_filesize( $url, $timeout = 10 ) {
 
 //Returns duration of .mp3 file
 function wpfc_mp3_duration($mp3_url) {
-	require_once plugin_dir_path( __FILE__ ) . '/includes/getid3/getid3.php'; 
+	require_once WPFC_SERMONS . '/includes/getid3/getid3.php'; 
 	$filename = tempnam('/tmp','getid3');
 	if (file_put_contents($filename, file_get_contents($mp3_url, false, null, 0, 300000))) {
 		  $getID3 = new getID3;
