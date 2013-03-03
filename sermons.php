@@ -176,7 +176,7 @@ add_action("admin_init", "wpfc_sermon_images");
 
 // Make all queries for sermons order by the sermon date
 function wpfc_sermon_order_query( $query ) {
-	if ( $query->is_main_query() ) :
+	if ( !is_admin() && $query->is_main_query() ) :
 	if( is_post_type_archive('wpfc_sermon') || is_tax( 'wpfc_preacher' ) || is_tax( 'wpfc_sermon_topics' ) || is_tax( 'wpfc_sermon_series' ) || is_tax( 'wpfc_bible_book' ) ) {
 		$query->set('meta_key', 'sermon_date');
 		$query->set('meta_value', date("m/d/Y"));
