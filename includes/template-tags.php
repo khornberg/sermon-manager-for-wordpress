@@ -170,6 +170,7 @@ function wpfc_sermon_date( $args, $before = '', $after = '' ) {
 }
 
 // Change published date to sermon date on frontend display
+// Disabled in 1.7.2 due to problems with some themes
 function wpfc_sermon_date_filter() {
 	global $post;
 	if ( 'wpfc_sermon' == get_post_type() ) {
@@ -178,7 +179,7 @@ function wpfc_sermon_date_filter() {
 			return $date;
 	}
 }
-add_filter('get_the_date', 'wpfc_sermon_date_filter');
+//add_filter('get_the_date', 'wpfc_sermon_date_filter');
 
 // Change the_author to the preacher on frontend display
 function wpfc_sermon_author_filter() {
