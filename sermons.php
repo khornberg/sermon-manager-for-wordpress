@@ -3,7 +3,7 @@
 Plugin Name: Sermon Manager for WordPress
 Plugin URI: http://www.wpforchurch.com/products/sermon-manager-for-wordpress/
 Description: Add audio and video sermons, manage speakers, series, and more. Visit <a href="http://wpforchurch.com" target="_blank">Wordpress for Church</a> for tutorials and support.
-Version: 1.7
+Version: 1.7.2
 Author: Jack Lamb
 Author URI: http://www.wpforchurch.com/
 License: GPL2
@@ -14,7 +14,7 @@ Text Domain: sermon-manager
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 // Define the plugin URL
-define('WPFC_SERMONS', plugins_url() . '/sermon-manager-for-wordpress');
+define( 'WPFC_SERMONS', plugin_dir_path(__FILE__) );
 
 // Translations
 function wpfc_sermon_translations() {
@@ -176,7 +176,7 @@ add_action("admin_init", "wpfc_sermon_images");
 
 // Make all queries for sermons order by the sermon date
 function wpfc_sermon_order_query( $query ) {
-	if ( $query->is_main_query() ) :
+	if ( !is_admin() && $query->is_main_query() ) :
 	if( is_post_type_archive('wpfc_sermon') || is_tax( 'wpfc_preacher' ) || is_tax( 'wpfc_sermon_topics' ) || is_tax( 'wpfc_sermon_series' ) || is_tax( 'wpfc_bible_book' ) ) {
 		$query->set('meta_key', 'sermon_date');
 		$query->set('meta_value', date("m/d/Y"));
