@@ -11,7 +11,7 @@ Text Domain: sermon-manager
 */
 
 // Security check to see if someone is accessing this file directly
-if(preg_match("#^sermons.php#", basename($_SERVER['PHP_SELF']))) exit();
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 // Define the plugin URL
 define('WPFC_SERMONS', plugins_url() . '/sermon-manager-for-wordpress');
