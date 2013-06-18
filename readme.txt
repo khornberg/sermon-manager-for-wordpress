@@ -1,5 +1,5 @@
 === Sermon Manager ===
-Contributors: wpforchurch
+Contributors: wpforchurch, khornberg
 Donate link: http://wpforchurch.com/
 Tags: church, sermon, sermons, preaching, podcasting
 Requires at least: 3.4

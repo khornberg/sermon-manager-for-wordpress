@@ -241,7 +241,11 @@ function wpfc_sermon_files() {
 			echo '<a href="' . get_wpfc_sermon_meta('sermon_notes') . '" class="sermon-notes">'.__( 'Notes', 'sermon-manager').'</a>';
 		echo '</div>';
 	}
+	// if ( isset($sermonoptions['download']) == '1' ) {
+		wpfc_sermon_download();
+	// }
 }
+
 
 // render additional files
 function wpfc_sermon_attachments() {
@@ -411,6 +415,22 @@ function wpfc_footer_preacher() {
 				echo '</div>';
 			}
 		}
+	}
+}
+
+/**
+ * Display download link for sermon
+ *
+ * @return void
+ * @author khornberg
+ **/
+function wpfc_sermon_download()
+{
+	include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+	if ( is_plugin_active( "download-shortcode/download-shortcode.php" )) {
+		echo '<div class="wpfc_sermon-notes cf">';
+			echo do_shortcode( '[download label="Download"]' . get_wpfc_sermon_meta('sermon_audio') . '[/download]' );
+		echo '</div>';
 	}
 }
 
