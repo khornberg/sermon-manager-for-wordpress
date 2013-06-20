@@ -235,12 +235,7 @@ function wpfc_sermon_files() {
 				echo '<source src="' . get_wpfc_sermon_meta('sermon_audio') . '"  type="audio/mp3" />';
 			echo '</audio>';
 		echo '</div>';
-	} 
-	if ( get_wpfc_sermon_meta('sermon_notes') ) {
-		echo '<div class="wpfc_sermon-notes cf">';
-			echo '<a href="' . get_wpfc_sermon_meta('sermon_notes') . '" class="sermon-notes">'.__( 'Notes', 'sermon-manager').'</a>';
-		echo '</div>';
-	}
+	}  	
 }
 
 
@@ -322,8 +317,11 @@ function render_wpfc_sermon_excerpt() {
 			<div class="wpfc_sermon cf">		  	
 				<?php wpfc_sermon_files(); ?>
 			</div>
-		<?php } ?>
-		<?php if ( isset($sermonoptions['force_download_link']) == '1' ) { ?>
+		<?php } if ( isset($sermonoptions['notes_link']) == '1' && get_wpfc_sermon_meta('sermon_notes') ) { ?>
+			<div class="wpfc_sermon-notes cf">;
+				<?php wpfc_sermon_notes(); ?>
+			</div>
+		<?php } if ( isset($sermonoptions['force_download_link']) == '1' ) { ?>
 			<div class="wpfc_sermon-notes cf">
 				<?php wpfc_sermon_download(); ?>
 			</div>
@@ -422,6 +420,22 @@ function wpfc_footer_preacher() {
 }
 
 /**
+ * Display notes link for sermon excerpt
+ *
+ * @return void
+ * @author khornberg
+ **/
+function wpfc_sermon_notes()
+{
+	include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+	if ( is_plugin_active( "download-shortcode/download-shortcode.php" )) {
+			echo do_shortcode( '[download label="'.__( 'Notes', 'sermon-manager').'"]' . get_wpfc_sermon_meta('sermon_notes') . '[/download]' );
+	} else {
+		echo '<a target="_blank" href="' . get_wpfc_sermon_meta('sermon_notes') . '">'.__( 'Notes', 'sermon-manager').'</a>';
+	}
+}
+
+/**
  * Display download link for sermon excerpt
  *
  * @return void
@@ -431,10 +445,8 @@ function wpfc_sermon_download()
 {
 	include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 	if ( is_plugin_active( "download-shortcode/download-shortcode.php" )) {
-			echo do_shortcode( '[download label="Download"]' . get_wpfc_sermon_meta('sermon_audio') . '[/download]' );
+			echo do_shortcode( '[download label="'.__( 'Download', 'sermon-manager').'"]' . get_wpfc_sermon_meta('sermon_audio') . '[/download]' );
 	} else {
-		echo '<a target="_blank" href="' . get_wpfc_sermon_meta('sermon_audio') . '">Download</a>';
+		echo '<a target="_blank" href="' . get_wpfc_sermon_meta('sermon_audio') . '">'.__( 'Download', 'sermon-manager').'</a>';
 	}
 }
-
-?>
