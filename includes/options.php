@@ -177,6 +177,13 @@ function wpfc_sermon_options_render_form() {
 						<label><input name="wpfc_options[archive_player]" type="checkbox" value="1" <?php if (isset($options['archive_player'])) { checked('1', $options['archive_player']); } ?> /> <?php _e('Display an audio player or video embed in the archive listing.', 'sermon-manager'); ?></label><br />
 					</td>
 				</tr>
+				<!-- Display download link on archive-->
+				<tr valign="top">
+					<th scope="row"><?php _e('Display download link on archive pages', 'sermon-manager'); ?></th>
+					<td>
+						<label><input name="wpfc_options[force_download_link]" type="checkbox" value="1" <?php if (isset($options['force_download_link'])) { checked('1', $options['force_download_link']); } ?> /> <?php _e('Display a download link below each sermon.', 'sermon-manager'); ?></label><br />
+					</td>
+				</tr>
 				<!-- Plugin Version - Hidden field -->
 				<tr valign="top" style="display:none;">
 					<th scope="row"><?php _e('Version ', 'sermon-manager'); ?><?php echo $options['version']; ?></th>

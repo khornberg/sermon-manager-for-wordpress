@@ -241,9 +241,6 @@ function wpfc_sermon_files() {
 			echo '<a href="' . get_wpfc_sermon_meta('sermon_notes') . '" class="sermon-notes">'.__( 'Notes', 'sermon-manager').'</a>';
 		echo '</div>';
 	}
-	// if ( isset($sermonoptions['download']) == '1' ) {
-		wpfc_sermon_download();
-	// }
 }
 
 
@@ -303,7 +300,7 @@ function render_wpfc_sermon_single() {
 <?php
 }
 
-// render single sermon entry
+// render sermon archive
 function render_wpfc_sermon_excerpt() { 
 	global $post;?>
 	<div class="wpfc_sermon_wrap cf">
@@ -312,7 +309,7 @@ function render_wpfc_sermon_excerpt() {
 		</div>
 		<div class="wpfc_sermon_meta cf">
 			<p>	
-				<?php 
+				<?php
 					wpfc_sermon_date(get_option('date_format'), '<span class="sermon_date">', '</span> '); echo the_terms( $post->ID, 'wpfc_service_type',  ' <span class="service_type">(', ' ', ')</span>');
 			?></p><p><?php
 					wpfc_sermon_meta('bible_passage', '<span class="bible_passage">'.__( 'Bible Text: ', 'sermon-manager'), '</span> | ');
@@ -321,11 +318,17 @@ function render_wpfc_sermon_excerpt() {
 				?>
 			</p>
 		</div>
-		<?php	$sermonoptions = get_option('wpfc_options'); if ( isset($sermonoptions['archive_player']) == '1') { ?>
+		<?php $sermonoptions = get_option('wpfc_options'); if ( isset($sermonoptions['archive_player']) == '1') { ?>
 			<div class="wpfc_sermon cf">		  	
 				<?php wpfc_sermon_files(); ?>
 			</div>
 		<?php } ?>
+		<?php if ( isset($sermonoptions['force_download_link']) == '1' ) { ?>
+			<div class="wpfc_sermon-notes cf">
+				<?php wpfc_sermon_download(); ?>
+			</div>
+		<?php } ?>
+		
 	</div>
 	<?php 
 }
@@ -419,7 +422,7 @@ function wpfc_footer_preacher() {
 }
 
 /**
- * Display download link for sermon
+ * Display download link for sermon excerpt
  *
  * @return void
  * @author khornberg
@@ -428,9 +431,9 @@ function wpfc_sermon_download()
 {
 	include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 	if ( is_plugin_active( "download-shortcode/download-shortcode.php" )) {
-		echo '<div class="wpfc_sermon-notes cf">';
 			echo do_shortcode( '[download label="Download"]' . get_wpfc_sermon_meta('sermon_audio') . '[/download]' );
-		echo '</div>';
+	} else {
+		echo '<a target="_blank" href="' . get_wpfc_sermon_meta('sermon_audio') . '">Download</a>';
 	}
 }
 
