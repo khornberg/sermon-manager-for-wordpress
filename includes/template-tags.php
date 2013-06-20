@@ -318,10 +318,10 @@ function render_wpfc_sermon_excerpt() {
 				<?php wpfc_sermon_files(); ?>
 			</div>
 		<?php } if ( isset($sermonoptions['notes_link']) == '1' && get_wpfc_sermon_meta('sermon_notes') ) { ?>
-			<div class="wpfc_sermon-notes cf">;
+			<div class="wpfc_sermon-notes cf">
 				<?php wpfc_sermon_notes(); ?>
 			</div>
-		<?php } if ( isset($sermonoptions['force_download_link']) == '1' ) { ?>
+		<?php } if ( isset($sermonoptions['force_download_link']) == '1' && get_wpfc_sermon_meta('sermon_audio') || get_wpfc_sermon_meta('sermon_video') ) { ?>
 			<div class="wpfc_sermon-notes cf">
 				<?php wpfc_sermon_download(); ?>
 			</div>
@@ -445,8 +445,15 @@ function wpfc_sermon_download()
 {
 	include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 	if ( is_plugin_active( "download-shortcode/download-shortcode.php" )) {
-			echo do_shortcode( '[download label="'.__( 'Download', 'sermon-manager').'"]' . get_wpfc_sermon_meta('sermon_audio') . '[/download]' );
+			if (get_wpfc_sermon_meta('sermon_audio')) 
+				echo do_shortcode( '[download label="'.__( 'Download Audio', 'sermon-manager').'"]' . get_wpfc_sermon_meta('sermon_audio') . '[/download]' );
+			if (get_wpfc_sermon_meta('sermon_video'))
+				echo do_shortcode( '[download label="'.__( 'Download Video', 'sermon-manager').'"]' . get_wpfc_sermon_meta('sermon_video') . '[/download]' );	
 	} else {
-		echo '<a target="_blank" href="' . get_wpfc_sermon_meta('sermon_audio') . '">'.__( 'Download', 'sermon-manager').'</a>';
+		if (get_wpfc_sermon_meta('sermon_audio')) 
+			echo '<a target="_blank" href="' . get_wpfc_sermon_meta('sermon_audio') . '">'.__( 'Download Audio', 'sermon-manager').'</a>';
+		if (get_wpfc_sermon_meta('sermon_video'))
+			echo '<a target="_blank" href="' . get_wpfc_sermon_meta('sermon_video') . '">'.__( 'Download Video', 'sermon-manager').'</a>';
+
 	}
 }
