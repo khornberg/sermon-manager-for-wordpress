@@ -225,9 +225,9 @@ function render_sermon_image($size)
             print apply_filters( 'sermon-images-list-the-terms', '', array(
                 'image_size'   => $size,
                 'taxonomy'     => 'wpfc_sermon_series',
-                'after' => '',
-                'after_image' => '',
-                'before' => '',
+                'after'        => '',
+                'after_image'  => '',
+                'before'       => '',
                 'before_image' => ''
             ) );
         elseif ( !has_post_thumbnail() && !apply_filters( 'sermon-images-list-the-terms', '', array( 'taxonomy'     => 'wpfc_sermon_series',	) ) ) :
@@ -235,9 +235,9 @@ function render_sermon_image($size)
             print apply_filters( 'sermon-images-list-the-terms', '', array(
                 'image_size'   => $size,
                 'taxonomy'     => 'wpfc_preacher',
-                'after' => '',
-                'after_image' => '',
-                'before' => '',
+                'after'        => '',
+                'after_image'  => '',
+                'before'       => '',
                 'before_image' => ''
             ) );
         endif;
@@ -270,11 +270,11 @@ function wpfc_sermon_attachments()
 {
     global $post;
     $args = array(
-        'post_type' => 'attachment',
+        'post_type'   => 'attachment',
         'numberposts' => -1,
         'post_status' => null,
         'post_parent' => $post->ID,
-        'exclude' => get_post_thumbnail_id()
+        'exclude'     => get_post_thumbnail_id()
     );
     $attachments = get_posts($args);
     if ($attachments) {
@@ -409,9 +409,9 @@ function wpfc_footer_series()
                         ),
                     'image_size'   => 'thumbnail',
                     'taxonomy'     => 'wpfc_sermon_series',
-                    'after' => '</div>',
-                    'after_image' => '',
-                    'before' => '<div class="sermon-footer-image">',
+                    'after'        => '</div>',
+                    'after_image'  => '',
+                    'before'       => '<div class="sermon-footer-image">',
                     'before_image' => ''
                 ) );
                 /* Description */
@@ -442,9 +442,9 @@ function wpfc_footer_preacher()
                         ),
                     'image_size'   => 'thumbnail',
                     'taxonomy'     => 'wpfc_preacher',
-                    'after' => '</div>',
-                    'after_image' => '',
-                    'before' => '<div class="sermon-footer-image">',
+                    'after'        => '</div>',
+                    'after_image'  => '',
+                    'before'       => '<div class="sermon-footer-image">',
                     'before_image' => ''
                 ) );
                 /* Description */
@@ -481,15 +481,19 @@ function wpfc_sermon_download()
 {
     include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
     if ( is_plugin_active( "download-shortcode/download-shortcode.php" )) {
-            if (get_wpfc_sermon_meta('sermon_audio'))
+            if (get_wpfc_sermon_meta('sermon_audio')) {
                 echo do_shortcode( '[download label="'.__( 'Download Audio', 'sermon-manager').'"]' . get_wpfc_sermon_meta('sermon_audio') . '[/download]' );
-            if (get_wpfc_sermon_meta('sermon_video'))
+            }
+            if (get_wpfc_sermon_meta('sermon_video')) {
                 echo do_shortcode( '[download label="'.__( 'Download Video', 'sermon-manager').'"]' . get_wpfc_sermon_meta('sermon_video') . '[/download]' );
+            }
     } else {
-        if (get_wpfc_sermon_meta('sermon_audio'))
+        if (get_wpfc_sermon_meta('sermon_audio')) {
             echo '<a target="_blank" href="' . get_wpfc_sermon_meta('sermon_audio') . '">'.__( 'Download Audio', 'sermon-manager').'</a>';
-        if (get_wpfc_sermon_meta('sermon_video'))
+        }
+        if (get_wpfc_sermon_meta('sermon_video')) {
             echo '<a target="_blank" href="' . get_wpfc_sermon_meta('sermon_video') . '">'.__( 'Download Video', 'sermon-manager').'</a>';
+        }
 
     }
 }
