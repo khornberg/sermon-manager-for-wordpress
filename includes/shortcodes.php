@@ -37,7 +37,7 @@ function wpfc_display_images_shortcode( $atts = array () ) {
 		'size' => 'sermon_medium' // options: any size registered with add_image_size
 	), $atts ) );
 		
-		$terms = apply_filters( 'sermon-images-get-terms', '', array('taxonomy' => $tax, 'order' => $order, 'orderby' => 'name' ) );
+		$terms = apply_filters( 'sermon-images-get-terms', '', array('taxonomy' => $tax, 'term_args' => array('order' => $order, 'orderby' => $orderby) ) );
 		if ( ! empty( $terms ) ) { 
 			$list = '<ul id="wpfc_images_grid">'; foreach( (array) $terms as $term ) { 
 				$list .= '<li class="wpfc_grid_image">';
@@ -151,7 +151,8 @@ function wpfc_display_sermons_shortcode($atts) {
 
 add_shortcode('sermon_sort_fields', 'wpfc_sermons_sorting_shortcode');
 function wpfc_sermons_sorting_shortcode($atts) {
-	$sorting = render_wpfc_sorting();
-	return $sorting;
+	ob_start();
+		render_wpfc_sorting();
+	return ob_get_clean();
 }
 ?>
