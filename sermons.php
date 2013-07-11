@@ -3,10 +3,9 @@
 Plugin Name: Sermon Manager for WordPress
 Plugin URI: http://www.wpforchurch.com/products/sermon-manager-for-wordpress/
 Description: Add audio and video sermons, manage speakers, series, and more. Visit <a href="http://wpforchurch.com" target="_blank">Wordpress for Church</a> for tutorials and support.
-Version: 1.7.3
+Version: 1.8.0
 Author: Jack Lamb
 Author URI: http://www.wpforchurch.com/
-Contributors: Kyle Hornberg
 License: GPL2
 Text Domain: sermon-manager
 */
@@ -38,7 +37,7 @@ require_once plugin_dir_path( __FILE__ ) . '/includes/entry-views.php';
 // Add Upgrade Functions
 require_once plugin_dir_path( __FILE__ ) . '/includes/upgrade.php';
 
-// Load Shortcodes 
+// Load Shortcodes
 require_once plugin_dir_path( __FILE__ ) . '/includes/shortcodes.php';
 
 // Load Widgets
@@ -65,8 +64,8 @@ function wpfc_sermon_search_query( $query ) {
 				'value' => $query->query_vars['s'],
 				'compare' => 'LIKE'
 			)
-		)); 
-        //$query->set('post_type', 'wpfc_sermon'); 
+		));
+        //$query->set('post_type', 'wpfc_sermon');
 	};
 }
 //add_filter( 'pre_get_posts', 'wpfc_sermon_search_query');
@@ -78,23 +77,23 @@ add_action('wp_enqueue_scripts', 'add_wpfc_js');
 function add_wpfc_js() {
 
 	// Register them all!
-	wp_register_script( 'sermon-ajax', plugins_url('/js/ajax.js', __FILE__), array('jquery'), '1.5', false ); 
+	wp_register_script( 'sermon-ajax', plugins_url('/js/ajax.js', __FILE__), array('jquery'), '1.5', false );
 	wp_register_script('mediaelementjs-scripts', plugins_url('/js/mediaelement/mediaelement-and-player.min.js', __FILE__), array('jquery'), '2.7.0', false);
 	wp_register_style('mediaelementjs-styles', plugins_url('/js/mediaelement/mediaelementplayer.css', __FILE__));
 	wp_register_style('sermon-styles', plugins_url('/css/sermon.css', __FILE__));
 	wp_register_script('bibly-script', 'http://code.bib.ly/bibly.min.js', false, null );
 	wp_register_style('bibly-style', 'http://code.bib.ly/bibly.min.css', false, null );
-	
+
 	// Load them as needed
 	if ('wpfc_sermon' == get_post_type() ) {
 		wp_enqueue_script('mediaelementjs-scripts');
 		wp_enqueue_style('mediaelementjs-styles');
 	}
 	$sermonoptions = get_option('wpfc_options');
-	if (is_single() && 'wpfc_sermon' == get_post_type() && !isset($sermonoptions['bibly']) == '1') { 
+	if (is_single() && 'wpfc_sermon' == get_post_type() && !isset($sermonoptions['bibly']) == '1') {
 		wp_enqueue_script('bibly-script');
 		wp_enqueue_style('bibly-style');
-		
+
 		// get options for JS
 		$Bibleversion = $sermonoptions['bibly_version'];
 		wp_localize_script( 'bibly-script', 'bibly', array( // pass WP data into JS from this point on
@@ -103,18 +102,18 @@ function add_wpfc_js() {
 			'popupVersion'				=> $Bibleversion,
 		));
 	}
-	if ( !isset($sermonoptions['css']) == '1') { 
+	if ( !isset($sermonoptions['css']) == '1') {
 		wp_enqueue_style('sermon-styles');
 	}
-	
+
 	// Add ajax for pagination if shortcode is present in the content
 	global $wp_query;
 	global $post;
 	if($post) {
-	if (  false !== strpos($post->post_content, '[sermons') ) {	
+	if (  false !== strpos($post->post_content, '[sermons') ) {
 		wp_enqueue_script('sermon-ajax');
 		}
-	}	
+	}
 }
 
 
@@ -139,37 +138,37 @@ function wpfc_right_now() {
  * @since 2013-03-01
  */
 function wpfc_sermon_post_class( $classes, $class, $ID ) {
- 
+
     $taxonomies = array(
         'wpfc_preacher',
         'wpfc_sermon_series',
         'wpfc_bible_book',
         'wpfc_sermon_topics',
     );
- 
+
     $terms = get_the_terms( (int) $ID, $taxonomies );
- 
+
     if ( is_wp_error( $terms ) || empty( $terms ) )
         return $classes;
- 
+
     foreach ( (array) $terms as $term ) {
         if ( ! in_array( $term->slug, $classes ) )
             $classes[] = $term->slug;
     }
- 
+
     return $classes;
 }
- 
+
 add_filter( 'post_class', 'wpfc_sermon_post_class', 10, 3 );
 
 /**
  * Images Sizes for Series and Speakers
  */
 function wpfc_sermon_images() {
-	if ( function_exists( 'add_image_size' ) ) { 
-		add_image_size( 'sermon_small', 75, 75, true ); 
-		add_image_size( 'sermon_medium', 300, 200, true ); 
-		add_image_size( 'sermon_wide', 940, 350, true ); 
+	if ( function_exists( 'add_image_size' ) ) {
+		add_image_size( 'sermon_small', 75, 75, true );
+		add_image_size( 'sermon_medium', 300, 200, true );
+		add_image_size( 'sermon_wide', 940, 350, true );
 	}
 }
 add_action("admin_init", "wpfc_sermon_images");

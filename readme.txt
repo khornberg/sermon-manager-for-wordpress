@@ -4,13 +4,13 @@ Donate link: http://wpforchurch.com/
 Tags: church, sermon, sermons, preaching, podcasting
 Requires at least: 3.4
 Tested up to: 3.4.2
-Stable tag: 1.7.2
+Stable tag: 1.8.0
 
 Add audio and video sermons, manage speakers, series, and more to your church website
 
 == Description ==
 
-Sermon Manager is designed to help churches easily publish sermons online. You can add speakers, sermon series, Bible references etc. 
+Sermon Manager is designed to help churches easily publish sermons online. You can add speakers, sermon series, Bible references etc.
 
 Sermons can have .mp3 files, as well as pdf, doc, ppt, etc. added to them. Video embeds from sites like Vimeo are also possible.
 
@@ -42,7 +42,7 @@ You can visit the [plugin's homepage](http://www.wpforchurch.com/products/sermon
 == Installation ==
 
 1. Just use the "Add New" button in Plugin section of your WordPress blog's Control panel. To find the plugin there, search for 'Sermon Manager'
-1. Activate the plugin 
+1. Activate the plugin
 1. Add a sermon through the Dashboard
 1. To display the sermons on the frontend of your site, just visit the http://yourdomain.com/sermons if you have permalinks enabled or http://yourdomain.com/?post_type=wpfc_sermon if not. Or you can use the shortcode [sermons] in any page.
 1. Visit [WP for Church](http://wpforchurch.com/ "WP for Church") for support
@@ -59,7 +59,7 @@ Go to Appearance => Menus. In the "Custom Links" box add "http://yourdomain.com/
 
 = I wish Sermon Manager could... =
 
-I'm open to suggestions to make this a great tool for churches! Submit your feedback at [WP for Church](http://wpforchurch.com/ "WP for Church") 
+I'm open to suggestions to make this a great tool for churches! Submit your feedback at [WP for Church](http://wpforchurch.com/ "WP for Church")
 
 = More Questions? =
 
@@ -70,6 +70,11 @@ Visit the [plugin homepage](http://wpforchurch.com/plugins/sermon-manager/ "Serm
 2. Sermon Files
 
 == Changelog ==
+= 1.8.0 =
+* Add option to display download link for audio and video on archive page
+* Add option to display notes link on archive page
+* Uses [Download Shortcode](http://wordpress.org/plugins/download-shortcode) for downloads if activated
+
 = 1.7.2 =
 * disable a filter that was causing problems in some themes (added in 1.7)
 
@@ -131,17 +136,17 @@ Visit the [plugin homepage](http://wpforchurch.com/plugins/sermon-manager/ "Serm
 * Display a list of sermon series, preachers, sermon topics, or book of the Bible with a new shortcode [list-sermons]
 
 = 1.3.3 =
-* Bug fix with menu not showing in some themes 
+* Bug fix with menu not showing in some themes
 
 = 1.3.1 =
-* Bug fix with Service Type not saving correctly 
+* Bug fix with Service Type not saving correctly
 
-= 1.3 = 
+= 1.3 =
 * Added a settings page
 * Now translation ready!
 * Added styling to the Recent Sermons Widget
-* Added featured image to individual sermons 
-* Added images to sermon topics 
+* Added featured image to individual sermons
+* Added images to sermon topics
 * Created new functions to render sermon archive listing and single sermons
 * Added better sorting fields on archive page
 * Added shortcode to insert sort fields - sermon_sort_fields
@@ -151,10 +156,10 @@ Visit the [plugin homepage](http://wpforchurch.com/plugins/sermon-manager/ "Serm
 * Requires a plugin for pagination in shortcode to work: http://wordpress.org/extend/plugins/wp-pagenavi/
 
 = 1.2 =
-* Shortcode completely updated with [documentation](http://www.wpforchurch.com/882/sermon-shortcode/) 
+* Shortcode completely updated with [documentation](http://www.wpforchurch.com/882/sermon-shortcode/)
 
 = 1.1.4 =
-* Now you can add images to sermon series and preachers! 
+* Now you can add images to sermon series and preachers!
 * Widget now includes the sermon date
 * Added icons for audio and video attachments
 
@@ -172,7 +177,7 @@ Visit the [plugin homepage](http://wpforchurch.com/plugins/sermon-manager/ "Serm
 * minor CSS fixes
 
 = 1.1 =
-* New much improved templating system! 
+* New much improved templating system!
 * Bug fixes related to the loading of javascript and CSS
 
 = 1.0 =
