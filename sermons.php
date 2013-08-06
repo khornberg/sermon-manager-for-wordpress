@@ -8,13 +8,25 @@ Author: Jack Lamb
 Author URI: http://www.wpforchurch.com/
 License: GPL2
 Text Domain: sermon-manager
+Domain Path: /languages/
 */
 
-// Security check to see if someone is accessing this file directly
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 // Define the plugin URL
 define( 'WPFC_SERMONS', plugin_dir_path(__FILE__) );
+
+// Plugin Folder Path
+if ( ! defined( 'SM_PLUGIN_DIR' ) )
+	define( 'SM_PLUGIN_DIR', WP_PLUGIN_DIR . '/' . basename( dirname( __FILE__ ) ) . '/' );
+
+// Plugin Folder URL
+if ( ! defined( 'SM_PLUGIN_URL' ) )
+	define( 'SM_PLUGIN_URL', plugin_dir_url( SM_PLUGIN_DIR ) . basename( dirname( __FILE__ ) ) . '/' );
+
+// Plugin Root File
+if ( ! defined( 'SM_PLUGIN_FILE' ) )
+	define( 'SM_PLUGIN_FILE', __FILE__ );
 
 // Translations
 function wpfc_sermon_translations() {
