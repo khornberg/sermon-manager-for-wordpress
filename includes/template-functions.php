@@ -1,5 +1,21 @@
 <?php
 /**
+ * Available Actions
+ * @since 1.8
+ * 
+ * sm_archive_before - at the start of sermon-archive.php
+ * sm_archive_after
+ * sm_archive_loop_before - at the start of the article element in sermon-loop-archive.php; used for all archive listings
+ * sm_archive_loop_after
+ * 
+ * 
+ * 
+ * 
+ * 
+ * sm_sermon_media 
+ */
+
+/**
  * Returns the path to the Sermon Manager templates directory
  *
  * @since 1.8
