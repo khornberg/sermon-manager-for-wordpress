@@ -16,9 +16,6 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 // Define the plugin URL
 define( 'WPFC_SERMONS', plugin_dir_path(__FILE__) );
 
-// Define the plugin URL
-define( 'WPFC_SERMONS', plugin_dir_path(__FILE__) );
-
 // Plugin Folder Path
 if ( ! defined( 'SM_PLUGIN_DIR' ) )
 	define( 'SM_PLUGIN_DIR', WP_PLUGIN_DIR . '/' . basename( dirname( __FILE__ ) ) . '/' );
