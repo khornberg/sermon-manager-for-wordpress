@@ -59,6 +59,10 @@
 	clear: right;
 }
 
+a.sermon-attachments {
+	display: block;
+}
+
 /* controls padding around video embeds */
 .wpfc_sermon-video {
 	margin: 10px 0 10px;
