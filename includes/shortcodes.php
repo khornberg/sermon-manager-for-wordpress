@@ -151,8 +151,7 @@ function wpfc_display_sermons_shortcode($atts) {
 
 add_shortcode('sermon_sort_fields', 'wpfc_sermons_sorting_shortcode');
 function wpfc_sermons_sorting_shortcode($atts) {
-	ob_start();
-		render_wpfc_sorting();
-	return ob_get_clean();
+	$sorting = render_wpfc_sorting();
+	return $sorting;
 }
 ?>

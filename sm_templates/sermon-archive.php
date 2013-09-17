@@ -5,9 +5,11 @@
 ?>
 
 <div id="sermon-manager">
+
+<?php do_action( 'sm_archive_before' ); ?>
+
 <?php if ( have_posts() ) : ?>
 
-	<?php do_action( 'sm_archive_before' ); ?>
 	<?php /* Start the Loop */ ?>
 	<?php while ( have_posts() ) : the_post(); ?>
 
@@ -22,8 +24,8 @@
 
 	<?php endwhile; ?>
 
-	<?php do_action( 'sm_archive_after' ); ?>
-
 <?php endif; ?>
+
+<?php do_action( 'sm_archive_after' ); ?>
 
 </div>

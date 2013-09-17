@@ -266,6 +266,7 @@ function wpfc_sermon_files()
 }
 
 // render additional files
+<<<<<<< HEAD
 function wpfc_sermon_attachments()
 {
     global $post;
@@ -287,7 +288,19 @@ function wpfc_sermon_attachments()
         echo '</a>';
         echo '</p>';
         echo '</div>';
-    }
+	} else {
+		echo '<div id="wpfc-attachments" class="cf">';
+		echo '<p><strong>'.__( 'Download Files', 'sermon-manager').'</strong>';
+			if ( get_wpfc_sermon_meta('sermon_audio') ) {
+					echo '<a href="' . get_wpfc_sermon_meta('sermon_audio') . '" class="sermon-attachments">'.__( 'MP3', 'sermon-manager').'</a>';
+			}
+			if ( get_wpfc_sermon_meta('sermon_notes') ) {
+					echo '<a href="' . get_wpfc_sermon_meta('sermon_notes') . '" class="sermon-attachments">'.__( 'Notes', 'sermon-manager').'</a>';
+			}
+		echo '</p>';
+		echo '</div>';
+	}
+
 }
 
 // render single sermon entry
