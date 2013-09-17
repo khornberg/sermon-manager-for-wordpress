@@ -359,7 +359,7 @@ function render_wpfc_sermon_excerpt()
     </div>
     <?php
 
-    debug();
+    // debug();
 }
 
 // Add sermon content
