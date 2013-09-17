@@ -358,6 +358,8 @@ function render_wpfc_sermon_excerpt()
 
     </div>
     <?php
+
+    debug();
 }
 
 // Add sermon content
@@ -479,21 +481,65 @@ function wpfc_sermon_notes()
  **/
 function wpfc_sermon_download()
 {
+    $audio = (get_wpfc_sermon_meta('sermon_audio')) ? true : false;
+    $video = (get_wpfc_sermon_meta('sermon_video')) ? true : false;
+
     include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
     if ( is_plugin_active( "download-shortcode/download-shortcode.php" )) {
-            if (get_wpfc_sermon_meta('sermon_audio')) {
-                echo do_shortcode( '[download label="'.__( 'Download Audio', 'sermon-manager').'"]' . get_wpfc_sermon_meta('sermon_audio') . '[/download]' );
-            }
-            if (get_wpfc_sermon_meta('sermon_video')) {
-                echo do_shortcode( '[download label="'.__( 'Download Video', 'sermon-manager').'"]' . get_wpfc_sermon_meta('sermon_video') . '[/download]' );
-            }
-    } else {
-        if (get_wpfc_sermon_meta('sermon_audio')) {
-            echo '<a target="_blank" href="' . get_wpfc_sermon_meta('sermon_audio') . '">'.__( 'Download Audio', 'sermon-manager').'</a>';
+        if ($audio && $video) {
+            echo do_shortcode( '[download label="'.__( 'Download Audio', 'sermon-manager').'"]' . get_wpfc_sermon_meta('sermon_audio') . '[/download]' );
+            echo do_shortcode( '[download label="'.__( 'Download Video', 'sermon-manager').'"]' . get_wpfc_sermon_meta('sermon_video') . '[/download]' );
         }
-        if (get_wpfc_sermon_meta('sermon_video')) {
+        elseif ($audio) {
+            echo do_shortcode( '[download label="'.__( 'Download', 'sermon-manager').'"]' . get_wpfc_sermon_meta('sermon_audio') . '[/download]' );
+        }
+        elseif ($video) {
+            echo do_shortcode( '[download label="'.__( 'Download', 'sermon-manager').'"]' . get_wpfc_sermon_meta('sermon_video') . '[/download]' );
+        }
+    } else {
+        if ($audio && $video) {
+            echo '<a target="_blank" href="' . get_wpfc_sermon_meta('sermon_audio') . '">'.__( 'Download Audio', 'sermon-manager').'</a>';
             echo '<a target="_blank" href="' . get_wpfc_sermon_meta('sermon_video') . '">'.__( 'Download Video', 'sermon-manager').'</a>';
         }
-
+        elseif ($audio) {
+            echo '<a target="_blank" href="' . get_wpfc_sermon_meta('sermon_audio') . '">'.__( 'Download Audio', 'sermon-manager').'</a>';
+        }
+        elseif ($video) {
+            echo '<a target="_blank" href="' . get_wpfc_sermon_meta('sermon_video') . '">'.__( 'Download', 'sermon-manager').'</a>';
+        }
     }
+}
+
+
+/**
+ * debug function
+ *
+ * Output all custom post data so I can create a plugin to import sermons
+ *
+ * @return void
+ * @author khornberg
+ **/
+function debug()
+{
+    $getPostCustom = get_post_custom();
+    foreach($getPostCustom as $name=>$value){
+        echo "<b>".$name."</b>"." => ";
+        foreach ($value as $namedarray => $valuearray) {
+            echo "<br />&nbsp;&nbsp;";
+            echo $namedarray." => ";
+            echo var_dump($valuearray);
+        }
+        echo "<br /><br />";
+    }
+
+    // the_meta();
+    // echo get_the_term_list( $post->ID, 'wpfc_preacher');
+    // $p = wp_get_object_terms($post->ID, 'wpfc_preacher');
+    // print_r($p);
+    // print_r(wp_get_object_terms($post->ID, 'wpfc_sermon_series'));
+    // print_r(wp_get_object_terms($post->ID, 'wpfc_sermon_topics'));
+
+    print_r(get_the_terms($post->ID, 'wpfc_preacher'));
+
+    print_r(get_object_taxonomies( 'wpfc_sermon' ));
 }

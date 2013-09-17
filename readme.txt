@@ -4,7 +4,11 @@ Donate link: http://wpforchurch.com/
 Tags: church, sermon, sermons, preaching, podcasting
 Requires at least: 3.4
 Tested up to: 3.4.2
+<<<<<<< HEAD
 Stable tag: 1.8.0
+=======
+Stable tag: 1.8
+>>>>>>> 2d37d27fe242390027a8e01a67bf0d74bb58d5c1
 
 Add audio and video sermons, manage speakers, series, and more to your church website
 
@@ -70,10 +74,15 @@ Visit the [plugin homepage](http://wpforchurch.com/plugins/sermon-manager/ "Serm
 2. Sermon Files
 
 == Changelog ==
-= 1.8.0 =
+
+= Local Fixes =
 * Add option to display download link for audio and video on archive page
 * Add option to display notes link on archive page
 * Uses [Download Shortcode](http://wordpress.org/plugins/download-shortcode) for downloads if activated
+
+= 1.8 =
+* Add new template support - sm_get_template_part
+* fix sermon images shortcode
 
 = 1.7.2 =
 * disable a filter that was causing problems in some themes (added in 1.7)

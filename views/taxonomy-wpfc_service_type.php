@@ -28,10 +28,17 @@ get_header();
 				
 				<?php /* Display navigation to next/previous pages when applicable */ ?>
 				<?php if ( $wp_query->max_num_pages > 1 ) : ?>
-					<div id="nav-above" class="navigation">
-						<div class="nav-previous"><?php next_posts_link( __( '<span class="meta-nav">&larr;</span> Older posts', 'sermon-manager' ) ); ?></div>
-						<div class="nav-next"><?php previous_posts_link( __( 'Newer posts <span class="meta-nav">&rarr;</span>', 'sermon-manager' ) ); ?></div>
-					</div><!-- #nav-above -->
+					<?php if( function_exists("wp_pagenavi") ) : ?>
+						<div id="sermon-navigation"> 
+							<?php wp_pagenavi( array( 'query' => $listing ) ); ?>
+						</div>
+					<?php else: ?>
+						<div id="nav-above" class="navigation">
+							<div class="nav-previous"><?php next_posts_link( __( '<span class="meta-nav">&larr;</span> Older posts', 'sermon-manager' ) ); ?></div>
+							<div class="nav-next"><?php previous_posts_link( __( 'Newer posts <span class="meta-nav">&rarr;</span>', 'sermon-manager' ) ); ?></div>
+						</div><!-- #nav-above -->
+					<?php endif; ?>
+					
 				<?php endif; ?>
 
 				<?php /* If there are no posts to display, such as an empty archive page */ ?>
