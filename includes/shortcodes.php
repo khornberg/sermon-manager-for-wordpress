@@ -37,7 +37,7 @@ function wpfc_display_images_shortcode( $atts = array () ) {
 		'size' => 'sermon_medium' // options: any size registered with add_image_size
 	), $atts ) );
 		
-		$terms = apply_filters( 'sermon-images-get-terms', '', array('taxonomy' => $tax, 'order' => $order, 'orderby' => 'name' ) );
+		$terms = apply_filters( 'sermon-images-get-terms', '', array('taxonomy' => $tax, 'term_args' => array('order' => $order, 'orderby' => $orderby) ) );
 		if ( ! empty( $terms ) ) { 
 			$list = '<ul id="wpfc_images_grid">'; foreach( (array) $terms as $term ) { 
 				$list .= '<li class="wpfc_grid_image">';
@@ -133,7 +133,7 @@ function wpfc_display_sermons_shortcode($atts) {
 	</div>
 	<?php
 	endwhile; //end loop
-	if(function_exists(wp_pagenavi)) : ?>
+	if( function_exists("wp_pagenavi") ) : ?>
 		<div id="sermon-navigation"> 
 			<?php wp_pagenavi( array( 'query' => $listing ) ); ?>
 		</div>
