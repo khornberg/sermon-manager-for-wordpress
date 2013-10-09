@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: Sermon Manager for WordPress
+Plugin Name: Sermon Manager for WordPress DEV
 Plugin URI: http://www.wpforchurch.com/products/sermon-manager-for-wordpress/
 Description: Add audio and video sermons, manage speakers, series, and more. Visit <a href="http://wpforchurch.com" target="_blank">Wordpress for Church</a> for tutorials and support.
 Version: 1.7.4
