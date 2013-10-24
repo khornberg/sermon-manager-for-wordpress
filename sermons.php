@@ -199,4 +199,18 @@ function wpfc_sermon_order_query( $query ) {
 	endif;
 }
 add_action('pre_get_posts', 'wpfc_sermon_order_query', 9999);
+
+// WordPress debug _log function
+if(!function_exists('_log')){
+    function _log( $message ) {
+        if( WP_DEBUG === true ){
+            if( is_array( $message ) || is_object( $message ) ){
+                error_log( print_r( $message, true ) );
+            } else {
+                error_log( $message );
+            }
+        }
+    }
+}
+
 ?>

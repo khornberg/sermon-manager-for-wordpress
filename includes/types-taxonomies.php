@@ -277,6 +277,48 @@ function wpfc_sermon_metaboxes( array $meta_boxes ) {
 	return $meta_boxes;
 }
 
+/**
+ * Get podcast file info on save and store in custom fields.
+ * Using meta boxes validation filter.
+ * Added by T Hyde 9 Oct 2013
+ *
+ * @param $new
+ * @param $post_id
+ * @param $field
+ * @return $new unchanged
+ */
+function wpfc_sermon_audio_validate( $new, $post_id, $field ) {
+
+    // only for sermon audio
+    if ( $field['id'] != 'sermon_audio' )
+        return $new;
+
+    $current = get_post_meta($post_id, 'sermon_audio', 'true');
+    $currentsize = get_post_meta($post_id, '_wpfc_sermon_size', 'true');
+
+    // only grab if different (getting data from dropbox can be a bit slow)
+    if ( $new != '' && ( $new != $current || empty($currentsize) ) ) {
+
+        // get file data
+        $size =  wpfc_get_filesize( $new );
+        $duration = wpfc_mp3_duration( $new );
+
+        // store in hidden custom fields
+        update_post_meta( $post_id, '_wpfc_sermon_duration', $duration );
+        update_post_meta( $post_id, '_wpfc_sermon_size', $size );
+
+    } elseif ($new == '') {
+
+        // clean up if file removed
+        delete_post_meta( $post_id, '_wpfc_sermon_duration');
+        delete_post_meta( $post_id, '_wpfc_sermon_size' );
+
+    }
+
+    return $new;
+}
+add_filter('wpfc_validate_file','wpfc_sermon_audio_validate', 10, 3);
+
 //Remove service type box (since we already have a method for selecting it)
 function remove_service_type_taxonomy() {
 	$custom_taxonomy_slug = 'wpfc_service_type';
