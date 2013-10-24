@@ -50,9 +50,10 @@ $post_image = ( $post_image ) ? $post_image['0'] : null;
 
 $audio_file = get_post_meta($post->ID, 'sermon_audio', 'true');
 $audio_file_size = get_post_meta($post->ID, '_wpfc_sermon_size', 'true'); //now using custom field T Hyde 9 Oct 2013
+if ($audio_file_size < 0 ) $audio_file_size = 0; //itunes needs this to be zero if undefined
 $audio_duration = get_post_meta($post->ID, '_wpfc_sermon_duration', 'true'); // now using custom field T Hyde 9 Oct 2013
 ?>
-<?php if ( $audio_file && $audio_file_size && $audio_duration ) : ?>
+<?php if ( $audio_file && $audio_duration ) : ?>
 		<item>
 			<title><?php the_title() ?></title>
 			<link><?php the_permalink() ?></link>
