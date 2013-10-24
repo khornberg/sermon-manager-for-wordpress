@@ -385,7 +385,7 @@ function wpfc_sermon_options_render_form() {
 			</table>
 			
 			<br />
-			<p><?php _e( 'Once your Podcast Settings are complete and your Sermons are ready, it\'s time to ', 'sermon-manager' ); ?><a href="https://phobos.apple.com/WebObjects/MZFinance.woa/wa/publishPodcast" target="_blank"><?php _e( 'Submit Your Podcast', 'sermon-manager' ); ?></a><?php _e( ' to the iTunes Store!', 'sermon-manager' ); ?></p>
+			<p><?php _e( 'Once your Podcast Settings are complete and your Sermons are ready, it\'s time to ', 'sermon-manager' ); ?><a href="http://www.apple.com/itunes/podcasts/specs.html#submitting" target="_blank"><?php _e( 'Submit Your Podcast', 'sermon-manager' ); ?></a><?php _e( ' to the iTunes Store!', 'sermon-manager' ); ?></p>
 			
 			<p><?php _e( 'Alternatively, if you want to track your Podcast subscribers, simply pass the Podcast Feed URL above through ', 'sermon-manager' ); ?><a href="http://feedburner.google.com/" target="_blank"><?php _e( 'FeedBurner', 'sermon-manager' ); ?></a><?php _e( '. FeedBurner will then give you a new URL to submit to iTunes instead.', 'sermon-manager' ); ?></p>
 			
