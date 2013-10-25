@@ -116,7 +116,8 @@ function wpfc_sermon_options_render_form() {
 		<div class="sermon-option-tabs">
 		<div class="icon32" id="icon-options-general"><br></div>
 		<h2><?php _e('Sermon Manager Options', 'sermon-manager'); ?></h2>
-
+		<?php //echo '<pre>'; print_r($sermon_settings); echo '</pre>'; ?>
+	
 			<h2 class="nav-tab-wrapper">
 				<ul class="ui-tabs-nav">
 					<li><a id="sermon-general" class="nav-tab" href="#sermon-options-general"><?php _e('General', 'sermon-manager'); ?></a></li>
