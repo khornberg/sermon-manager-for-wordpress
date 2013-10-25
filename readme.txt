@@ -4,7 +4,7 @@ Donate link: http://wpforchurch.com/
 Tags: church, sermon, sermons, preaching, podcasting
 Requires at least: 3.4
 Tested up to: 3.6
-Stable tag: 1.7.4
+Stable tag: 1.8
 
 Add audio and video sermons, manage speakers, series, and more to your church website
 
@@ -70,6 +70,11 @@ Visit the [plugin homepage](http://wpforchurch.com/plugins/sermon-manager/ "Serm
 2. Sermon Files
 
 == Changelog ==
+= 1.8 =
+* improved podcasting performance - props @livingos
+* cleaned up options page with tabs, added hooks for other plugins to hook into the option page.
+* fixed bug causing sermons to display 2x
+
 = 1.7.4 = 
 * updated the way attachments are displayed. Now they will be available for download even if not attached to the sermon.
 * fix sermon-images shortcode
