@@ -60,7 +60,9 @@ function wpfc_get_filesize( $url, $timeout = 10 ) {
 
 //Returns duration of .mp3 file
 function wpfc_mp3_duration($mp3_url) {
-	require_once WPFC_SERMONS . '/includes/getid3/getid3.php'; 
+	if ( ! class_exists( 'getID3' ) ) {
+		require_once WPFC_SERMONS . '/includes/getid3/getid3.php'; 
+	}
 	$filename = tempnam('/tmp','getid3');
 	if (file_put_contents($filename, file_get_contents($mp3_url, false, null, 0, 300000))) {
 		  $getID3 = new getID3;
