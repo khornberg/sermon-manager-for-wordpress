@@ -30,7 +30,7 @@ Would you like to help develop Sermon Manager? Fork it on [Bit Bucket](https://b
 
 = Available Addons =
 * [Import MP3 to Sermon Manager](http://wordpress.org/plugins/sermon-manager-import/) from @khornberg
-* [Import from Sermon Browser to Sermon Manager] (http://www.wpforchurch.com/wordpess-products/import-sermon-browser/) is coming soon! 
+* [Import from Sermon Browser to Sermon Manager](http://www.wpforchurch.com/wordpess-products/import-sermon-browser/) is coming soon! 
 
 [DEMO](http://demo.wpforchurch.com/sermon-manager/)
 
