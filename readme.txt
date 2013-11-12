@@ -29,14 +29,16 @@ iTunes podcasting support is available!
 Would you like to help develop Sermon Manager? Fork it on [Bit Bucket](https://bitbucket.org/wpforchurch/sermon-manager-for-wordpress)
 
 = Available Addons =
-* [Import MP3 to Sermon Manager](http://www.wpforchurch.com/products/import-mp3-to-sermon-manager/)
-* Import from Sermon Browser to Sermon Manager is coming soon! Sign up for the [newsletter](http://www.wpforchurch.com/newsletter/) to make sure you don't miss the announcement!
+* [Import MP3 to Sermon Manager](http://wordpress.org/plugins/sermon-manager-import/) from @khornberg
+* [Import from Sermon Browser to Sermon Manager](http://www.wpforchurch.com/wordpess-products/import-sermon-browser/) is coming soon! 
 
 [DEMO](http://demo.wpforchurch.com/sermon-manager/)
 
 You can visit the [plugin's homepage](http://www.wpforchurch.com/products/sermon-manager-for-wordpress/ "Sermon Manager homepage") to get support.
 
-[WP for Church](http://wpforchurch.com/ "WP for Church") provides plugins, themes, and training for churches using WordPress.
+[WP for Church](http://wpforchurch.com/ "WP for Church") provides plugins and responsive themes for churches using WordPress.
+
+Sign up for the [newsletter](http://www.wpforchurch.com/newsletter/)!
 
 
 == Installation ==
