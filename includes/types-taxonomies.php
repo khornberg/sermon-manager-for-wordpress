@@ -259,6 +259,19 @@ function wpfc_sermon_metaboxes( array $meta_boxes ) {
 				'id'   => 'sermon_audio',
 				'type' => 'file',
 			),
+			/* just testing for duration and file size fields _wpfc_sermon_duration & _wpfc_sermon_size
+			array(
+				'name' => __('MP3 Duration', 'sermon-manager'),
+				'desc' => __('Length in minutes (will be automatically determined by Sermon Manager when you save)', 'sermon-manager'),
+				'id'   => '_wpfc_sermon_duration',
+				'type' => 'text',
+			),
+			array(
+				'name' => __('MP3 File size', 'sermon-manager'),
+				'desc' => __('File size in bytes (will be automatically determined by Sermon Manager when you save)', 'sermon-manager'),
+				'id'   => '_wpfc_sermon_size',
+				'type' => 'text',
+			),*/
 			array(
 				'name' => __('Video Embed Code', 'sermon-manager'),
 				'desc' => __('Paste your embed code for Vimeo, Youtube, or other service here', 'sermon-manager'),

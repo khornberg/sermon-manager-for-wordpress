@@ -266,7 +266,6 @@ function wpfc_sermon_files()
 }
 
 // render additional files
-<<<<<<< HEAD
 function wpfc_sermon_attachments()
 {
     global $post;
@@ -377,18 +376,17 @@ function render_wpfc_sermon_excerpt()
 
 // Add sermon content
 add_filter('the_content', 'add_wpfc_sermon_content');
-function add_wpfc_sermon_content($content)
-{
-    if ( 'wpfc_sermon' == get_post_type() ) {
-        if ( is_archive() ) {
-            $new_content = render_wpfc_sermon_excerpt();
-        } elseif ( is_singular() && is_main_query() ) {
-            $new_content = render_wpfc_sermon_single();
-        }
-        $content = $new_content;
-    }
 
-    return $content;
+function add_wpfc_sermon_content($content) {
+	if ( 'wpfc_sermon' == get_post_type() && in_the_loop() == true ){
+		if ( is_archive() ) {
+			$new_content = render_wpfc_sermon_excerpt();
+		} elseif ( is_singular() && is_main_query() ) {
+			$new_content = render_wpfc_sermon_single();
+		}
+		$content = $new_content;	
+	}	
+	return $content;
 }
 
 //Podcast Feed URL
@@ -468,91 +466,4 @@ function wpfc_footer_preacher()
             }
         }
     }
-}
-
-/**
- * Display notes link for sermon excerpt
- *
- * @return void
- * @author khornberg
- **/
-function wpfc_sermon_notes()
-{
-    include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-    if ( is_plugin_active( "download-shortcode/download-shortcode.php" )) {
-            echo do_shortcode( '[download label="'.__( 'Notes', 'sermon-manager').'"]' . get_wpfc_sermon_meta('sermon_notes') . '[/download]' );
-    } else {
-        echo '<a target="_blank" href="' . get_wpfc_sermon_meta('sermon_notes') . '">'.__( 'Notes', 'sermon-manager').'</a>';
-    }
-}
-
-/**
- * Display download link for sermon excerpt
- *
- * @return void
- * @author khornberg
- **/
-function wpfc_sermon_download()
-{
-    $audio = (get_wpfc_sermon_meta('sermon_audio')) ? true : false;
-    $video = (get_wpfc_sermon_meta('sermon_video')) ? true : false;
-
-    include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-    if ( is_plugin_active( "download-shortcode/download-shortcode.php" )) {
-        if ($audio && $video) {
-            echo do_shortcode( '[download label="'.__( 'Download Audio', 'sermon-manager').'"]' . get_wpfc_sermon_meta('sermon_audio') . '[/download]' );
-            echo do_shortcode( '[download label="'.__( 'Download Video', 'sermon-manager').'"]' . get_wpfc_sermon_meta('sermon_video') . '[/download]' );
-        }
-        elseif ($audio) {
-            echo do_shortcode( '[download label="'.__( 'Download', 'sermon-manager').'"]' . get_wpfc_sermon_meta('sermon_audio') . '[/download]' );
-        }
-        elseif ($video) {
-            echo do_shortcode( '[download label="'.__( 'Download', 'sermon-manager').'"]' . get_wpfc_sermon_meta('sermon_video') . '[/download]' );
-        }
-    } else {
-        if ($audio && $video) {
-            echo '<a target="_blank" href="' . get_wpfc_sermon_meta('sermon_audio') . '">'.__( 'Download Audio', 'sermon-manager').'</a>';
-            echo '<a target="_blank" href="' . get_wpfc_sermon_meta('sermon_video') . '">'.__( 'Download Video', 'sermon-manager').'</a>';
-        }
-        elseif ($audio) {
-            echo '<a target="_blank" href="' . get_wpfc_sermon_meta('sermon_audio') . '">'.__( 'Download Audio', 'sermon-manager').'</a>';
-        }
-        elseif ($video) {
-            echo '<a target="_blank" href="' . get_wpfc_sermon_meta('sermon_video') . '">'.__( 'Download', 'sermon-manager').'</a>';
-        }
-    }
-}
-
-
-/**
- * debug function
- *
- * Output all custom post data so I can create a plugin to import sermons
- *
- * @return void
- * @author khornberg
- **/
-function debug()
-{
-    $getPostCustom = get_post_custom();
-    foreach($getPostCustom as $name=>$value){
-        echo "<b>".$name."</b>"." => ";
-        foreach ($value as $namedarray => $valuearray) {
-            echo "<br />&nbsp;&nbsp;";
-            echo $namedarray." => ";
-            echo var_dump($valuearray);
-        }
-        echo "<br /><br />";
-    }
-
-    // the_meta();
-    // echo get_the_term_list( $post->ID, 'wpfc_preacher');
-    // $p = wp_get_object_terms($post->ID, 'wpfc_preacher');
-    // print_r($p);
-    // print_r(wp_get_object_terms($post->ID, 'wpfc_sermon_series'));
-    // print_r(wp_get_object_terms($post->ID, 'wpfc_sermon_topics'));
-
-    print_r(get_the_terms($post->ID, 'wpfc_preacher'));
-
-    print_r(get_object_taxonomies( 'wpfc_sermon' ));
 }
