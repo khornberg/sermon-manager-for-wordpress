@@ -358,20 +358,9 @@ function render_wpfc_sermon_excerpt()
             <div class="wpfc_sermon cf">
                 <?php wpfc_sermon_files(); ?>
             </div>
-        <?php } if ( isset($sermonoptions['notes_link']) == '1' && get_wpfc_sermon_meta('sermon_notes') ) { ?>
-            <div class="wpfc_sermon-notes cf">
-                <?php wpfc_sermon_notes(); ?>
-            </div>
-        <?php } if ( isset($sermonoptions['force_download_link']) == '1' && get_wpfc_sermon_meta('sermon_audio') || get_wpfc_sermon_meta('sermon_video') ) { ?>
-            <div class="wpfc_sermon-notes cf">
-                <?php wpfc_sermon_download(); ?>
-            </div>
         <?php } ?>
-
     </div>
     <?php
-
-    // debug();
 }
 
 // Add sermon content
