@@ -23,39 +23,22 @@ add_filter('generate_rewrite_rules', 'wpfc_sermon_podcast_feed_rewrite');
 
 // Get the filesize of a remote file, used for Podcast data
 function wpfc_get_filesize( $url, $timeout = 10 ) {
-	// Create a curl connection
-	$getsize = curl_init();
+	$headers = wp_get_http_headers( $url);
+    $duration = isset( $headers['content-length'] ) ? (int) $headers['content-length'] : 0;
+	
+	if( $duration ) {
+			sscanf( $duration , "%d:%d:%d" , $hours , $minutes , $seconds );
+			
+			$length = isset( $seconds ) ? $hours * 3600 + $minutes * 60 + $seconds : $hours * 60 + $minutes;
 
-	// Set the url we're requesting
-	curl_setopt($getsize, CURLOPT_URL, $url);
+			if( ! $length ) {
+					$length = (int) $duration;
+			}
 
-	// Set a valid user agent
-	curl_setopt($getsize, CURLOPT_USERAGENT, "Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.11) Gecko/20071127 Firefox/2.0.0.11");
+			return $length;
+	}
 
-	// Don't output any response directly to the browser
-	curl_setopt($getsize, CURLOPT_RETURNTRANSFER, true);
-
-	// Don't return the header (we'll use curl_getinfo();
-	curl_setopt($getsize, CURLOPT_HEADER, false);
-
-	// Don't download the body content
-	curl_setopt($getsize, CURLOPT_NOBODY, true);
-
-	// Follow location headers
-	curl_setopt($getsize, CURLOPT_FOLLOWLOCATION, true);
-
-	// Set the timeout (in seconds)
-	curl_setopt($getsize, CURLOPT_TIMEOUT, $timeout);
-
-	// Run the curl functions to process the request
-	$getsize_store = curl_exec($getsize);
-	$getsize_error = curl_error($getsize);
-	$getsize_info = curl_getinfo($getsize);
-
-	// Close the connection
-	curl_close($getsize); // Print the file size in bytes
-
-	return $getsize_info['download_content_length'];
+	return 0;	
 }
 
 //Returns duration of .mp3 file
