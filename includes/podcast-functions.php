@@ -58,7 +58,7 @@ function wpfc_mp3_duration($mp3_url) {
 	$headers = get_headers($mp3_url, 1); // Get the headers from the remote file
 				if ((!array_key_exists("Content-Length", $headers))) { return false; } // Get the content length from the remote file
 				$content_length = (int)$headers["Content-Length"]; 
-				$filesize= round($content_length/1000); // Make the filesize into kilobytes & round it
+				$filesize = round($content_length/1000); // Make the filesize into kilobytes & round it
 
 	$contentLengthKBITS=$filesize*8; // make kbytes into kbits
 	$bitrate=$bitratez/1000; //convert bits/sec to kbit/sec
