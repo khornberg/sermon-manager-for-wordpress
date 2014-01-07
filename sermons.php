@@ -98,8 +98,15 @@ function add_wpfc_js() {
 
 	// Load them as needed
 	if ('wpfc_sermon' == get_post_type() ) {
-		wp_enqueue_script('mediaelementjs-scripts');
-		wp_enqueue_style('mediaelementjs-styles');
+		// Check for included mediaelement.js in WP 3.6+
+		if (file_exists( ABSPATH . WPINC . '/js/mediaelement/mediaelement-and-player.min.js') ) {   
+				wp_enqueue_script('mediaelement');
+				wp_enqueue_style('mediaelement');
+			}
+			else {
+				wp_enqueue_script('mediaelementjs-scripts');
+				wp_enqueue_style('mediaelementjs-scripts');
+			}
 	}
 	$sermonoptions = get_option('wpfc_options');
 	if (is_single() && 'wpfc_sermon' == get_post_type() && !isset($sermonoptions['bibly']) == '1') {
