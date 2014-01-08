@@ -82,7 +82,21 @@ function wpfc_sermon_search_query( $query ) {
 }
 //add_filter( 'pre_get_posts', 'wpfc_sermon_search_query');
 
-
+/**
+ * Load mediaelement.js
+ * @since  2014-01-08
+ * @author Kyle Hornberg
+ */
+function wpfc_load_media_element() {
+	if (file_exists( ABSPATH . WPINC . '/js/mediaelement/mediaelement-and-player.min.js') ) {   
+			wp_enqueue_script('mediaelement');
+			wp_enqueue_style('mediaelement');
+	}
+	else {
+		wp_enqueue_script('mediaelementjs-scripts');
+		wp_enqueue_style('mediaelementjs-scripts');
+	}	
+}
 
 // Add scripts only to single sermon pages
 add_action('wp_enqueue_scripts', 'add_wpfc_js');
@@ -97,17 +111,9 @@ function add_wpfc_js() {
 	wp_register_style('bibly-style', 'http://code.bib.ly/bibly.min.css', false, null );
 
 	// Load them as needed
-	if ('wpfc_sermon' == get_post_type() ) {
-		// Check for included mediaelement.js in WP 3.6+
-		if (file_exists( ABSPATH . WPINC . '/js/mediaelement/mediaelement-and-player.min.js') ) {   
-				wp_enqueue_script('mediaelement');
-				wp_enqueue_style('mediaelement');
-			}
-			else {
-				wp_enqueue_script('mediaelementjs-scripts');
-				wp_enqueue_style('mediaelementjs-scripts');
-			}
-	}
+	// if ('wpfc_sermon' == get_post_type() ) {
+	// 	wpfc_load_media_element();
+	// }
 	$sermonoptions = get_option('wpfc_options');
 	if (is_single() && 'wpfc_sermon' == get_post_type() && !isset($sermonoptions['bibly']) == '1') {
 		wp_enqueue_script('bibly-script');

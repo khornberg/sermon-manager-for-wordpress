@@ -246,6 +246,8 @@ function render_sermon_image($size)
 // render files section
 function wpfc_sermon_files()
 {
+    wpfc_load_media_element();
+
     if ( get_wpfc_sermon_meta('sermon_video') ) {
         echo '<div class="wpfc_sermon-video cf">';
             echo do_shortcode( get_wpfc_sermon_meta('sermon_video'));
