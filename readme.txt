@@ -2,9 +2,9 @@
 Contributors: wpforchurch
 Donate link: http://wpforchurch.com/
 Tags: church, sermon, sermons, preaching, podcasting
-Requires at least: 3.4
-Tested up to: 3.7
-Stable tag: 1.8.2
+Requires at least: 3.6
+Tested up to: 3.8
+Stable tag: 1.8.3
 
 Add audio and video sermons, manage speakers, series, and more to your church website
 
@@ -72,6 +72,10 @@ Visit the [plugin homepage](http://wpforchurch.com/plugins/sermon-manager/ "Serm
 2. Sermon Files
 
 == Changelog ==
+= 1.8.3 =
+* require WordPress 3.6+ 
+* use built in mediaelement player
+
 = 1.8.1 =
 * fixed errors with saving settings for some users (remove dependency on CURL)
 
