@@ -7,6 +7,44 @@
  * @since Twenty Ten 1.0
  */
 
+/**
+ * Display download link for sermon excerpt
+ *
+ * @return void
+ * @author khornberg
+ **/
+function sermon_download_media()
+{
+    $audio = (get_wpfc_sermon_meta('sermon_audio')) ? true : false;
+    $video = (get_wpfc_sermon_meta('sermon_video')) ? true : false;
+
+	// Check if the download-shortcode plugin active
+    include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+    if ( is_plugin_active( "download-shortcode/download-shortcode.php" )) {
+        if ($audio && $video) {
+            echo do_shortcode( '[download label="'.__( 'Download Audio', 'sermon-manager').'"]' . get_wpfc_sermon_meta('sermon_audio') . '[/download]' );
+            echo do_shortcode( '[download label="'.__( 'Download Video', 'sermon-manager').'"]' . get_wpfc_sermon_meta('sermon_video') . '[/download]' );
+        }
+        elseif ($audio) {
+            echo do_shortcode( '[download label="'.__( 'Download', 'sermon-manager').'"]' . get_wpfc_sermon_meta('sermon_audio') . '[/download]' );
+        }
+        elseif ($video) {
+            echo do_shortcode( '[download label="'.__( 'Download', 'sermon-manager').'"]' . get_wpfc_sermon_meta('sermon_video') . '[/download]' );
+        }
+    } else {
+        if ($audio && $video) {
+            echo '<a target="_blank" href="' . get_wpfc_sermon_meta('sermon_audio') . '">'.__( 'Download Audio', 'sermon-manager').'</a>';
+            echo '<a target="_blank" href="' . get_wpfc_sermon_meta('sermon_video') . '">'.__( 'Download Video', 'sermon-manager').'</a>';
+        }
+        elseif ($audio) {
+            echo '<a target="_blank" href="' . get_wpfc_sermon_meta('sermon_audio') . '">'.__( 'Download Audio', 'sermon-manager').'</a>';
+        }
+        elseif ($video) {
+            echo '<a target="_blank" href="' . get_wpfc_sermon_meta('sermon_video') . '">'.__( 'Download', 'sermon-manager').'</a>';
+        }
+    }
+}
+
 get_header(); 
 
 ?>
@@ -27,6 +65,7 @@ get_header();
 						echo '<div class="archive-meta">' . $category_description . '</div>';
 				?>
 				</div>
+
 				<?php /* Display navigation to next/previous pages when applicable */ ?>
 				<?php if ( $wp_query->max_num_pages > 1 ) : ?>
 					<div id="nav-above" class="navigation">
@@ -73,6 +112,8 @@ get_header();
 							<div class="entry-content">
 								<?php render_wpfc_sermon_excerpt(); ?>
 							</div><!-- .entry-content -->
+
+							<?php sermon_download_media(); ?>
 
 							<div class="entry-utility">
 								<span class="comments-link"><?php comments_popup_link( __( 'Leave a comment', 'sermon-manager' ), __( '1 Comment', 'sermon-manager' ), __( '% Comments', 'sermon-manager' ) ); ?></span>
