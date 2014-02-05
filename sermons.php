@@ -160,7 +160,7 @@ function wpfc_dashboard() {
      * margin-right aligns the text
      */
     if ( current_user_can('edit_posts') ) {
-    	$link = '<a href"edit.php?post_type=wpfc_sermon">' . $num . ' ' . $text . '</a>';
+    	$link = '<a href="edit.php?post_type=wpfc_sermon">' . $num . ' ' . $text . '</a>';
     }
     else {
     	$link = $num . ' ' . $text;
