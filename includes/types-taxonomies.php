@@ -373,6 +373,8 @@ function wpfc_sermon_updated_messages( $messages ) {
 //create custom columns when listing sermon details in the Admin
 add_action("manage_posts_custom_column", "wpfc_sermon_columns");
 add_filter("manage_edit-wpfc_sermon_columns", "wpfc_sermon_edit_columns");
+add_filter( 'manage_edit-wpfc_sermon_sortable_columns', 'wpfc_column_register_sortable' );
+add_filter( 'request', 'wpfc_column_orderby' );
 
 function wpfc_sermon_edit_columns($columns) {
 	$columns = array(
@@ -382,6 +384,8 @@ function wpfc_sermon_edit_columns($columns) {
 		"series" => __('Sermon Series', 'sermon-manager'),
 		"topics" => __('Topics', 'sermon-manager'),
 		"views" => __('Views', 'sermon-manager'),
+		"preached" => __('Date Preached', 'sermon-manager'),
+		"passage" => __('Bible Passage', 'sermon-manager'),
 	);
 	return $columns;
 }
@@ -401,9 +405,43 @@ function wpfc_sermon_columns($column){
 			break;
 		case "views":
 			echo wpfc_entry_views_get( array( 'post_id' => $post->ID ) );
-			break;			
+			break;
+		case "preached":
+			echo wpfc_sermon_date_filter();
+			break;
+		case "passage":
+			echo get_post_meta( $post->ID, 'bible_passage', true );
+			break;
 	}
 }
+
+// Register the column as sortable
+// @url https://gist.github.com/scribu/906872
+function wpfc_column_register_sortable( $columns ) {
+	$columns = array(
+		"title" => __('Sermon Title', 'sermon-manager'),
+		"preacher" => __('Preacher', 'sermon-manager'),
+		"series" => __('Sermon Series', 'sermon-manager'),
+		"topics" => __('Topics', 'sermon-manager'),
+		"views" => __('Views', 'sermon-manager'),
+		"preached" => __('Date Preached', 'sermon-manager'),
+		"passage" => __('Bible Passage', 'sermon-manager'),
+	);
+
+	return $columns;
+}
+
+function wpfc_column_orderby( $vars ) {
+	if ( isset( $vars['orderby'] ) && 'preached' == $vars['orderby'] ) {
+		$vars = array_merge( $vars, array(
+			'meta_key' => 'sermon_date',
+			'orderby' => 'meta_value'
+		) );
+	}
+
+	return $vars;
+}
+
 
 
 // Custom taxonomy terms dropdown function
