@@ -371,21 +371,27 @@ function wpfc_sermon_updated_messages( $messages ) {
 
 
 //create custom columns when listing sermon details in the Admin
-add_action("manage_posts_custom_column", "wpfc_sermon_columns");
+add_action("manage_wpfc_sermon_posts_custom_column", "wpfc_sermon_columns");
 add_filter("manage_edit-wpfc_sermon_columns", "wpfc_sermon_edit_columns");
 add_filter( 'manage_edit-wpfc_sermon_sortable_columns', 'wpfc_column_register_sortable' );
-add_filter( 'request', 'wpfc_column_orderby' );
+
+//only run on edit.php page
+add_action( 'load-edit.php', 'wpfc_column_orderby_function');
+function wpfc_column_orderby_function()
+{
+	add_filter( 'request', 'wpfc_column_orderby' );
+}
 
 function wpfc_sermon_edit_columns($columns) {
 	$columns = array(
-		"cb" => "<input type=\"checkbox\" />",
-		"title" => __('Sermon Title', 'sermon-manager'),
+		"cb"       => "<input type=\"checkbox\" />",
+		"title"    => __('Sermon Title', 'sermon-manager'),
 		"preacher" => __('Preacher', 'sermon-manager'),
-		"series" => __('Sermon Series', 'sermon-manager'),
-		"topics" => __('Topics', 'sermon-manager'),
-		"views" => __('Views', 'sermon-manager'),
+		"series"   => __('Sermon Series', 'sermon-manager'),
+		"topics"   => __('Topics', 'sermon-manager'),
+		"views"    => __('Views', 'sermon-manager'),
 		"preached" => __('Date Preached', 'sermon-manager'),
-		"passage" => __('Bible Passage', 'sermon-manager'),
+		"passage"  => __('Bible Passage', 'sermon-manager'),
 	);
 	return $columns;
 }
@@ -419,29 +425,36 @@ function wpfc_sermon_columns($column){
 // @url https://gist.github.com/scribu/906872
 function wpfc_column_register_sortable( $columns ) {
 	$columns = array(
-		"title" => __('Sermon Title', 'sermon-manager'),
-		"preacher" => __('Preacher', 'sermon-manager'),
-		"series" => __('Sermon Series', 'sermon-manager'),
-		"topics" => __('Topics', 'sermon-manager'),
-		"views" => __('Views', 'sermon-manager'),
-		"preached" => __('Date Preached', 'sermon-manager'),
-		"passage" => __('Bible Passage', 'sermon-manager'),
+		"title"    => "title",
+		"preached" => "preached",
+		"preacher" => "preacher",
+		"series"   => "series",
+		"topics"   => "topics",
+		"views"    => "views",
+		"passage"  => "passage"
 	);
 
 	return $columns;
 }
 
 function wpfc_column_orderby( $vars ) {
-	if ( isset( $vars['orderby'] ) && 'preached' == $vars['orderby'] ) {
-		$vars = array_merge( $vars, array(
-			'meta_key' => 'sermon_date',
-			'orderby' => 'meta_value'
-		) );
+	if ( isset( $vars['post_type'] ) && $vars['post_type'] == 'wpfc_sermon' ) {
+		if ( isset( $vars['orderby'] ) && $vars['orderby'] == 'passage' ) {
+			$vars = array_merge( $vars, array(
+				'meta_key' => 'bible_passage',
+				'orderby' => 'meta_value'
+			) );
+		}
+		if ( isset( $vars['orderby'] ) && $vars['orderby'] == 'preached' ) {
+			$vars = array_merge( $vars, array(
+				'meta_key' => 'sermon_date',
+				'orderby' => 'meta_value'
+			) );
+		}
 	}
 
 	return $vars;
 }
-
 
 
 // Custom taxonomy terms dropdown function
