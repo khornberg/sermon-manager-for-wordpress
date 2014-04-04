@@ -92,7 +92,6 @@ add_action('wp_enqueue_scripts', 'add_wpfc_js');
 function add_wpfc_js() {
 
 	// Register them all!
-	wp_register_script( 'sermon-ajax', plugins_url('/js/ajax.js', __FILE__), array('jquery'), '1.5', false ); 
 	wp_register_style('sermon-styles', plugins_url('/css/sermon.css', __FILE__));
 	wp_register_script('bibly-script', 'http://code.bib.ly/bibly.min.js', false, null );
 	wp_register_style('bibly-style', 'http://code.bib.ly/bibly.min.css', false, null );
@@ -119,14 +118,6 @@ function add_wpfc_js() {
 		wp_enqueue_style('sermon-styles');
 	}
 	
-	// Add ajax for pagination if shortcode is present in the content
-	global $wp_query;
-	global $post;
-	if($post) {
-	if (  false !== strpos($post->post_content, '[sermons') ) {	
-		wp_enqueue_script('sermon-ajax');
-		}
-	}	
 }
 
 /**
