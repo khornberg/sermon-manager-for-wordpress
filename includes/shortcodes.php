@@ -253,7 +253,7 @@ function wpfc_display_sermons_shortcode($atts) {
 
 			<?php wp_reset_postdata(); ?>
 
-			<div id="wpfc_sermon_pagination">
+			<div id="sermon-navigation">
 				<?php
 					$big = 999999;
 					echo paginate_links( array(
