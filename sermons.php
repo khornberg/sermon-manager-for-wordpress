@@ -61,6 +61,9 @@ require_once plugin_dir_path( __FILE__ ) . '/includes/template-tags.php';
 // Load Podcast Functions
 require_once plugin_dir_path( __FILE__ ) . '/includes/podcast-functions.php';
 
+// Load Admin Functions
+if ( is_admin() )
+require_once plugin_dir_path( __FILE__ ) . '/includes/admin-functions.php';
 
 // Add filter for custom search: includes bible_passage, sermon_description in WordPress search
 function wpfc_sermon_search_query( $query ) {
