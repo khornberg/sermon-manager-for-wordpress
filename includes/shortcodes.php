@@ -248,15 +248,23 @@ function wpfc_display_sermons_shortcode($atts) {
 		<?php render_wpfc_sermon_excerpt(); ?>
 	</div>
 	<?php
-	endwhile; //end loop
-	if( function_exists("wp_pagenavi") ) : ?>
-		<div id="sermon-navigation"> 
-			<?php wp_pagenavi( array( 'query' => $listing ) ); ?>
-		</div>
-	<?php
-	endif;
-	wp_reset_query();
-	?>
+	endwhile; //end loop ?>
+		<div style="clear:both;"></div>
+
+			<?php wp_reset_postdata(); ?>
+
+			<div id="wpfc_sermon_pagination">
+				<?php
+					$big = 999999;
+					echo paginate_links( array(
+						'base'    => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
+						'format'  => '?paged=%#%',
+						'current' => max( 1, $args['paged'] ),
+						'total'   => $listing->max_num_pages
+					) );
+				?>
+			</div>
+		<div style="clear:both;"></div>
 	</div>
 	</div>
 	<?php
