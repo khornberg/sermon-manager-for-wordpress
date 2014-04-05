@@ -381,7 +381,12 @@ function wpfc_sermon_options_render_form() {
 			<br />
 <tr>
 			<p><strong><?php _e('Feed URL to Submit to iTunes', 'sermon-manager'); ?></strong><br/>
-			<input type="text" class="regular-text" readonly="readonly" value="<?php echo home_url(); ?>/feed/podcast" /></p>
+			<?php  
+			$archive_slug = $options['archive_slug'];
+			if(empty($archive_slug)) {
+				$archive_slug = 'sermons';
+			}?>
+			<input type="text" class="regular-text" readonly="readonly" value="<?php echo home_url('/').$archive_slug; ?>/feed/" /></p>
 			
 			<p><?php _e( 'Use the ', 'sermon-manager' ); ?><a href="http://www.feedvalidator.org/check.cgi?url=<?php echo home_url(); ?>/feed/podcast" target="_blank"><?php _e( 'Feed Validator', 'sermon-manager' ); ?></a><?php _e( ' to diagnose and fix any problems before submitting your Podcast to iTunes.', 'sermon-manager' ); ?></p>
 						
