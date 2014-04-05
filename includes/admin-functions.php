@@ -73,8 +73,29 @@ function wpfc_sermon_audio_validate( $new, $post_id, $field ) {
 	}
 	
 	// Populate enclosure field with URL, length and format, if valid URL found
+	// This will set the length of the enclosure automatically
 	do_enclose( $audio, $post_id );
 	
+	// Set duration as post meta
+	$current = get_post_meta($post_id, 'sermon_audio', 'true');
+    $currentsize = get_post_meta($post_id, '_wpfc_sermon_size', 'true');
+
+    // only grab if different (getting data from dropbox can be a bit slow)
+    if ( $new != '' && ( $new != $current || empty($currentsize) ) ) {
+
+        // get file data
+        $duration = wpfc_mp3_duration( $new );
+
+        // store in hidden custom fields
+        update_post_meta( $post_id, '_wpfc_sermon_duration', $duration );
+
+    } elseif ($new == '') {
+
+        // clean up if file removed
+        delete_post_meta( $post_id, '_wpfc_sermon_duration');
+
+    }
+
     return $new;
 }
 add_filter('wpfc_validate_file','wpfc_sermon_audio_validate', 10, 3);

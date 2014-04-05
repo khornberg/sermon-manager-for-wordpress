@@ -2,6 +2,13 @@
 header("Content-Type: application/rss+xml; charset=UTF-8");
 
 $settings = get_option('wpfc_options');
+// Redirect to new feed location
+$archive_slug = $settings['archive_slug'];
+if(empty($archive_slug)) {
+	$archive_slug = 'sermons';
+}
+wp_redirect( home_url( $archive_slug.'/feed/'), 301 );
+exit;
 
 $args = array(
 	'post_type' => 'wpfc_sermon',

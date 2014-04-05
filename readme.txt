@@ -4,7 +4,7 @@ Donate link: http://wpforchurch.com/
 Tags: church, sermon, sermons, preaching, podcasting
 Requires at least: 3.6
 Tested up to: 3.8
-Stable tag: 1.8.3
+Stable tag: 1.9
 
 Add audio and video sermons, manage speakers, series, and more to your church website
 
@@ -29,7 +29,7 @@ iTunes podcasting support is available!
 Would you like to help develop Sermon Manager? Fork it on [Bit Bucket](https://bitbucket.org/wpforchurch/sermon-manager-for-wordpress)
 
 = Available Addons =
-* [Import MP3 to Sermon Manager](http://www.wpforchurch.com/15603/beta-test-sermon-browser-import/) from @khornberg
+* [Import MP3 to Sermon Manager](http://wordpress.org/plugins/sermon-manager-import/) from @khornberg
 * [Import from Sermon Browser to Sermon Manager](http://www.wpforchurch.com/15603/beta-test-sermon-browser-import/) 
 
 [DEMO](http://demo.wpforchurch.com/sermon-manager/)
@@ -72,6 +72,17 @@ Visit the [plugin homepage](http://wpforchurch.com/plugins/sermon-manager/ "Serm
 2. Sermon Files
 
 == Changelog ==
+
+= 1.9 =
+* NEW FEATURE: Podcast feeds for every Preacher, Service Type, Series, Bible Book, and Topic.
+* Remove dependency on wp-pagenavi for shortcode pagination
+* Resolved issue with media player not displaying with shortcodes
+* New shortcode to display the latest sermon series image [latest_series] (many options including displaying by service type)
+* Admin columns are now sortable - props to @khornberg
+* All media is now uploaded to a custom folder /sermons/ under /uploads. This will allow easier media management and exclusion from backups (if desired)
+* Remove mediaelement audio player and use the built in mediaelement (now requires WordPress 3.6+)
+
+
 = 1.8.3 =
 * require WordPress 3.6+ 
 * use built in mediaelement player
