@@ -16,12 +16,13 @@ function wpfc_podcast_add_head(){
 	if( get_query_var( 'post_type' ) !== 'wpfc_sermon' )
         return;
 	
+	remove_filter('the_content', 'add_wpfc_sermon_content');
+
 	$settings = get_option('wpfc_options'); ?>
 	<copyright><?php echo esc_html( $settings['copyright'] ) ?></copyright>
 	<itunes:subtitle><?php echo esc_html( $settings['itunes_subtitle'] ) ?></itunes:subtitle>
 	<itunes:author><?php echo esc_html( $settings['itunes_author'] ) ?></itunes:author>
 	<itunes:summary><?php echo esc_html( $settings['itunes_summary'] ) ?></itunes:summary>
-	<description><?php echo esc_html( $settings['description'] ) ?></description>
 	<itunes:owner>
 		<itunes:name><?php echo esc_html( $settings['itunes_owner_name'] ) ?></itunes:name>
 		<itunes:email><?php echo esc_html( $settings['itunes_owner_email'] ) ?></itunes:email>
@@ -68,7 +69,7 @@ function wpfc_podcast_add_item(){
 	
 
 	$audio_duration = get_post_meta($post->ID, '_wpfc_sermon_duration', 'true');
-	if ($audio_duration < 0 ) $audio_duration = 0; //zero if undefined
+	if ($audio_duration < 0 ) $audio_duration = '0:00'; //zero if undefined
 	?>
 	<itunes:author><?php echo $speaker ?></itunes:author>
 	<itunes:subtitle><?php echo $series ?></itunes:subtitle>
@@ -76,15 +77,27 @@ function wpfc_podcast_add_item(){
 	<?php if ( $post_image ) : ?>
 	<itunes:image href="<?php echo $post_image; ?>" />
 	<?php endif; ?>
-	<?php if ( $enclosure == '' ) : 
-		do_enclose( $audio, $post->ID );
-	endif; ?>
+	<?php if ( $enclosure == '' ) : ?>
+		<enclosure url="<?php echo $audio; ?>" length="0" type="audio/mpeg"/>
+	<?php endif; ?>
 	<itunes:duration><?php echo esc_html( $audio_duration ); ?></itunes:duration>
 	<?php if( $topics ) { ?>
 		<itunes:keywords><?php echo esc_html( $topics ); ?></itunes:keywords><?php } 
 }
 add_action('rss_item', 'wpfc_podcast_add_item');
 add_action('rss2_item', 'wpfc_podcast_add_item');
+
+
+//Display the sermon description as the podcast summary
+function wpfc_podcast_summary ($content) {
+	global $post;
+	//$content = '';
+	$content = strip_tags( get_wpfc_sermon_meta('sermon_description') ); 
+		return $content;
+}
+add_filter( 'the_content_feed', 'wpfc_podcast_summary', 10, 3);
+add_filter( 'the_excerpt_rss', 'wpfc_podcast_summary');
+
 
 //Filter published date for podcast: use sermon date instead of post date
 function wpfc_podcast_item_date ($time, $d = 'U', $gmt = false) {
