@@ -98,7 +98,6 @@ function wpfc_podcast_summary ($content) {
 add_filter( 'the_content_feed', 'wpfc_podcast_summary', 10, 3);
 add_filter( 'the_excerpt_rss', 'wpfc_podcast_summary');
 
-
 //Filter published date for podcast: use sermon date instead of post date
 function wpfc_podcast_item_date ($time, $d = 'U', $gmt = false) {
  
@@ -108,7 +107,16 @@ function wpfc_podcast_item_date ($time, $d = 'U', $gmt = false) {
 	$time = wpfc_sermon_date('D, d M Y H:i:s O');
 	return $time;
 }
-add_filter ( 'get_post_time', 'wpfc_podcast_item_date', 10, 3);
+
+// Filter the date on sermons only
+function wpfc_modify_sermon_date( $query ) {
+	if ( !is_admin() && $query->is_main_query() && $query->is_feed() ) :
+	if( is_post_type_archive('wpfc_sermon') || is_tax( 'wpfc_preacher' ) || is_tax( 'wpfc_sermon_topics' ) || is_tax( 'wpfc_sermon_series' ) || is_tax( 'wpfc_bible_book' ) ) {
+		add_filter ( 'get_post_time', 'wpfc_podcast_item_date', 10, 3);
+	}
+	endif;
+}
+add_action('pre_get_posts', 'wpfc_modify_sermon_date', 9999);
 
 /**
  * Podcast Settings
