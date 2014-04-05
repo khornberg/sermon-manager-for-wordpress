@@ -16,9 +16,9 @@ function wpfc_podcast_add_head(){
 	<itunes:author><?php echo esc_html( $settings['itunes_author'] ) ?></itunes:author>
 	<?php $category_description = category_description();
 	if ( ! empty( $category_description ) ) { ?>
-		<itunes:summary><?php echo $category_description; ?></itunes:summary>
+		<itunes:summary><?php echo wp_filter_nohtml_kses( $category_description ); ?></itunes:summary>
 	<?php } else{ ?>
-		<itunes:summary><?php echo esc_html( $settings['itunes_summary'] ) ?></itunes:summary>
+		<itunes:summary><?php echo wp_filter_nohtml_kses( $settings['itunes_summary'] ) ?></itunes:summary>
 	<?php } ?>		
 	<itunes:owner>
 		<itunes:name><?php echo esc_html( $settings['itunes_owner_name'] ) ?></itunes:name>
