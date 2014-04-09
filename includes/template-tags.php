@@ -224,16 +224,13 @@ function wpfc_sermon_files() {
 			echo do_shortcode( get_wpfc_sermon_meta('sermon_video')); 
 		echo '</div>';								
 	} elseif ( !get_wpfc_sermon_meta('sermon_video') && get_wpfc_sermon_meta('sermon_audio') ) {
-		echo '<div class="wpfc_sermon-audio cf">';?>
-			<script>
-				jQuery.noConflict();
-				jQuery(document).ready(function(){
-					jQuery('audio').mediaelementplayer();	
-				});
-			</script> <?php
-			echo '<audio controls="controls">';
-				echo '<source src="' . get_wpfc_sermon_meta('sermon_audio') . '"  type="audio/mp3" />';
-			echo '</audio>';
+		echo '<div class="wpfc_sermon-audio cf">';
+				$mp3_url = get_wpfc_sermon_meta('sermon_audio');
+				$attr = array(
+					'src'      => $mp3_url,
+					'preload' => 'none'
+					);
+				echo wp_audio_shortcode( $attr );
 		echo '</div>';
 	} 
 	if ( get_wpfc_sermon_meta('sermon_notes') ) {
