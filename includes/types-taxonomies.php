@@ -290,4 +290,21 @@ function wpfc_sermon_metaboxes( array $meta_boxes ) {
 	return $meta_boxes;
 }
 
+// Custom taxonomy terms dropdown function
+function wpfc_get_term_dropdown($taxonomy) {
+	$terms = get_terms($taxonomy);
+	foreach ($terms as $term) {
+		$term_slug = $term->slug;
+		$current_preacher = get_query_var('wpfc_preacher');
+		$current_series = get_query_var('wpfc_sermon_series');
+		$current_topic = get_query_var('wpfc_sermon_topics');
+		$current_book = get_query_var('wpfc_bible_book');
+		if($term_slug == $current_preacher || $term_slug == $current_series || $term_slug == $current_topic || $term_slug == $current_book) {
+			echo '<option value="'.$term->slug.'" selected>'.$term->name.'</option>';
+		} else {
+			echo '<option value="'.$term->slug.'">'.$term->name.'</option>';
+		}
+	}
+} 
+
 ?>
