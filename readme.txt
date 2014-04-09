@@ -3,7 +3,7 @@ Contributors: wpforchurch
 Donate link: http://wpforchurch.com/
 Tags: church, sermon, sermons, preaching, podcasting
 Requires at least: 3.6
-Tested up to: 3.8
+Tested up to: 3.8.2
 Stable tag: 1.9
 
 Add audio and video sermons, manage speakers, series, and more to your church website
@@ -18,19 +18,20 @@ Images can be attached to any sermon, sermon series, speaker, or sermon topic. T
 
 It will work with any theme, but themes can be customized to display content as you like. You'll find the template files in the /views folder. You can copy these into the root of your theme folder and customize to suit your site's design. If you need assistance, just post on the forums at WP for Church.
 
-Super flexible shortcode for displaying sermons in page content.
+Super flexible shortcode for displaying sermons in page content. (improved pagination in 1.9)
 
-Display a grid of images assigned to speakers or series with a new shortcode [sermon-images]
+Display the most recent series by service type [latest_series]
+Display a grid of images assigned to speakers or series with shortcode [sermon_images]
+Display a list of sermon series, preachers, sermon topics, or book of the Bible with shortcode [list_sermons]
 
-Display a list of sermon series, preachers, sermon topics, or book of the Bible with a new shortcode [list-sermons]
-
-iTunes podcasting support is available!
+iTunes podcasting support for all sermons, plus each sermon series, preachers, sermon topics, or book of the Bible!
 
 Would you like to help develop Sermon Manager? Fork it on [Bit Bucket](https://bitbucket.org/wpforchurch/sermon-manager-for-wordpress)
 
+We want Sermon Manager to be easy to use and to extend for every church. 
+
 = Available Addons =
 * [Import MP3 to Sermon Manager](http://wordpress.org/plugins/sermon-manager-import/) from @khornberg
-* [Import from Sermon Browser to Sermon Manager](http://www.wpforchurch.com/15603/beta-test-sermon-browser-import/) 
 
 [DEMO](http://demo.wpforchurch.com/sermon-manager/)
 
@@ -75,12 +76,12 @@ Visit the [plugin homepage](http://wpforchurch.com/plugins/sermon-manager/ "Serm
 
 = 1.9 =
 * NEW FEATURE: Podcast feeds for every Preacher, Service Type, Series, Bible Book, and Topic.
+* NEW FEATURE: New shortcode to display the latest sermon series image [latest_series] (many options including displaying by service type)
+* NEW FEATURE: Admin columns are now sortable - props to @khornberg
+* NEW FEATURE: All media is now uploaded to a custom folder /sermons/ under /uploads. This will allow easier media management and exclusion from backups (if desired)
+* Remove mediaelement audio player and use the built in mediaelement (now requires WordPress 3.6+)
 * Remove dependency on wp-pagenavi for shortcode pagination
 * Resolved issue with media player not displaying with shortcodes
-* New shortcode to display the latest sermon series image [latest_series] (many options including displaying by service type)
-* Admin columns are now sortable - props to @khornberg
-* All media is now uploaded to a custom folder /sermons/ under /uploads. This will allow easier media management and exclusion from backups (if desired)
-* Remove mediaelement audio player and use the built in mediaelement (now requires WordPress 3.6+)
 
 
 = 1.8.3 =
