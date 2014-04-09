@@ -7,7 +7,8 @@
  */
  
 // List all series or speakers in a simple unordered list
-add_shortcode('list-sermons', 'wpfc_list_sermons_shortcode');
+add_shortcode('list_sermons', 'wpfc_list_sermons_shortcode'); //preferred markup
+add_shortcode('list-sermons', 'wpfc_list_sermons_shortcode'); //left for compatibility
 function wpfc_list_sermons_shortcode( $atts = array () ){
 	extract( shortcode_atts( array(
 		'tax' => 'wpfc_sermon_series', // options: wpfc_sermon_series, wpfc_preacher, wpfc_sermon_topics, wpfc_bible_book
@@ -28,7 +29,8 @@ function wpfc_list_sermons_shortcode( $atts = array () ){
 }
  
 // Display all series or speakers in a grid of images
-add_shortcode('sermon-images', 'wpfc_display_images_shortcode');
+add_shortcode('sermon_images', 'wpfc_display_images_shortcode'); //preferrred markup
+add_shortcode('sermon-images', 'wpfc_display_images_shortcode'); //left for compatibility
 function wpfc_display_images_shortcode( $atts = array () ) {
 	extract( shortcode_atts( array(
 		'tax' => 'wpfc_sermon_series', // options: wpfc_sermon_series, wpfc_preacher, wpfc_sermon_topics
@@ -181,7 +183,7 @@ function wpfc_display_sermons_shortcode($atts) {
 		'image_size' => 'sermon_small',
 		'tax_operator' => 'IN'
 	), $atts, 'sermons' ) );
-	// begin - code from : http://wordpress.org/support/topic/wp-pagenavi-with-custom-query-and-paged-variable?replies=2
+	// pagination
 		global $paged;
 		if( get_query_var( 'paged' ) )
 			$my_page = get_query_var( 'paged' );
@@ -193,7 +195,7 @@ function wpfc_display_sermons_shortcode($atts) {
 		set_query_var( 'paged', $my_page );
 		$paged = $my_page;
 		}
-	// - end
+	// pagination end
 	$args = array(
 		'post_type' => 'wpfc_sermon',
 		'posts_per_page' => $posts_per_page,
