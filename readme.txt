@@ -4,7 +4,7 @@ Donate link: http://wpforchurch.com/
 Tags: church, sermon, sermons, preaching, podcasting
 Requires at least: 3.6
 Tested up to: 3.8.2
-Stable tag: 1.9
+Stable tag: 1.9.1
 
 Add audio and video sermons, manage speakers, series, and more to your church website
 
@@ -74,6 +74,8 @@ Visit the [plugin homepage](http://wpforchurch.com/plugins/sermon-manager/ "Serm
 
 == Changelog ==
 
+= 1.9.1 =
+* Minor fixes to the [latest_series] shortcode - [updated documentation](http://www.wpforchurch.com/knowledgebase/sermon-manager-shortcodes/)
 = 1.9 =
 * NEW FEATURE: Podcast feeds for every Preacher, Service Type, Series, Bible Book, and Topic.
 * NEW FEATURE: New shortcode to display the latest sermon series image [latest_series] (many options including displaying by service type)
