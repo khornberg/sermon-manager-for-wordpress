@@ -67,7 +67,7 @@ function wpfc_podcast_add_item(){
 	
 
 	$audio_duration = get_post_meta($post->ID, '_wpfc_sermon_duration', 'true');
-	if ($audio_duration < 0 ) $audio_duration = '0:00'; //zero if undefined
+	if ($audio_duration == '' ) $audio_duration = '0:00'; //zero if undefined
 	?>
 	<itunes:author><?php echo $speaker ?></itunes:author>
 	<itunes:subtitle><?php echo $series ?></itunes:subtitle>

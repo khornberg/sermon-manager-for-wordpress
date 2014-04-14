@@ -259,13 +259,14 @@ function wpfc_sermon_metaboxes( array $meta_boxes ) {
 				'id'   => 'sermon_audio',
 				'type' => 'file',
 			),
-			/* just testing for duration and file size fields _wpfc_sermon_duration & _wpfc_sermon_size
+			// Added the ability to edit the length of the MP3 audio
 			array(
 				'name' => __('MP3 Duration', 'sermon-manager'),
-				'desc' => __('Length in minutes (will be automatically determined by Sermon Manager when you save)', 'sermon-manager'),
+				'desc' => __('Length in minutes (if left blank, will attempt to calculate automatically when you save)', 'sermon-manager'),
 				'id'   => '_wpfc_sermon_duration',
 				'type' => 'text',
 			),
+			/* just testing for file size field _wpfc_sermon_size
 			array(
 				'name' => __('MP3 File size', 'sermon-manager'),
 				'desc' => __('File size in bytes (will be automatically determined by Sermon Manager when you save)', 'sermon-manager'),
