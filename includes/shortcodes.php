@@ -2,8 +2,6 @@
 /** 
  * Sermons Shortcodes 
  *
- * Requires a plugin for pagination to work: http://wordpress.org/extend/plugins/wp-pagenavi/
- *
  */
  
 // List all series or speakers in a simple unordered list
@@ -29,14 +27,15 @@ function wpfc_list_sermons_shortcode( $atts = array () ){
 }
  
 // Display all series or speakers in a grid of images
-add_shortcode('sermon_images', 'wpfc_display_images_shortcode'); //preferrred markup
+add_shortcode('sermon_images', 'wpfc_display_images_shortcode'); //preferred markup
 add_shortcode('sermon-images', 'wpfc_display_images_shortcode'); //left for compatibility
 function wpfc_display_images_shortcode( $atts = array () ) {
 	extract( shortcode_atts( array(
 		'tax' => 'wpfc_sermon_series', // options: wpfc_sermon_series, wpfc_preacher, wpfc_sermon_topics
 		'order' => 'ASC', // options: DESC
 		'orderby' => 'name', // options: id, count, name, slug, term_group, none
-		'size' => 'sermon_medium' // options: any size registered with add_image_size
+		'size' => 'sermon_medium', // options: any size registered with add_image_size
+		'show_desc' => 'false'
 	), $atts ) );
 		
 		$terms = apply_filters( 'sermon-images-get-terms', '', array('taxonomy' => $tax, 'term_args' => array('order' => $order, 'orderby' => $orderby) ) );
@@ -45,6 +44,11 @@ function wpfc_display_images_shortcode( $atts = array () ) {
 				$list .= '<li class="wpfc_grid_image">';
 				$list .= '<a href="' . esc_url( get_term_link( $term, $term->taxonomy ) ) . '">' . wp_get_attachment_image( $term->image_id, $size ) . '</a>';
 				$list .= '<h3 class="wpfc_grid_title"><a href="' . esc_url( get_term_link( $term, $term->taxonomy ) ) . '">' . $term->name . '</a></h3>';
+				if ( $show_desc == 'true' ) {
+					if ( ! empty( $term->description ) ) {
+						$list .= '<div class="taxonomy-description">' . $term->description . '</div>';
+					}
+				}
 				$list .= '</li>'; 
 			} 
 			$list .= '</ul>'; 
