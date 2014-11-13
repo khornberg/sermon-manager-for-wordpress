@@ -250,7 +250,7 @@ function wpfc_display_sermons_shortcode($atts) {
 	while ( $listing->have_posts() ): $listing->the_post(); global $post; ?>
 	<div id="wpfc_sermon_wrap">
 		<h3 class="sermon-title"><a href="<?php the_permalink(); ?>" title="<?php printf( esc_attr__( 'Permalink to %s', 'sermon-manager' ), the_title_attribute( 'echo=0' ) ); ?>" rel="bookmark"><?php the_title(); ?></a></h3> 
-		<?php render_wpfc_sermon_excerpt(); ?>
+		<?php do_action( 'sermon_excerpt' ); ?>
 	</div>
 	<?php
 	endwhile; //end loop ?>

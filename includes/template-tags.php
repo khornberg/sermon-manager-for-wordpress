@@ -217,8 +217,14 @@ function render_sermon_image($size) {
 		endif;
 }
 
-// render files section
-function wpfc_sermon_files() {
+/*
+ * render media files section
+ * for template files use 
+ * do_action ('sermon_media'); 
+ *
+ */ 
+add_action ( 'sermon_media', 'wpfc_sermon_media', 5 );
+function wpfc_sermon_media() {
 	if ( get_wpfc_sermon_meta('sermon_video') ) { 
 		echo '<div class="wpfc_sermon-video cf">';
 			echo do_shortcode( get_wpfc_sermon_meta('sermon_video')); 
@@ -238,6 +244,10 @@ function wpfc_sermon_files() {
 			echo '<a href="' . get_wpfc_sermon_meta('sermon_notes') . '" class="sermon-notes">'.__( 'Notes', 'sermon-manager').'</a>';
 		echo '</div>';
 	}
+}
+// legacy function
+function wpfc_sermon_files() {
+	do_action ( 'sermon_media' );
 }
 
 // render additional files
@@ -275,8 +285,13 @@ function wpfc_sermon_attachments() {
 	}
 }
 
-// render single sermon entry
+// legacy function
 function render_wpfc_sermon_single() { 
+	do_action( 'sermon_single' );
+}
+
+// single sermon action
+function wpfc_sermon_single() { 
 	global $post; ?>
 	<div class="wpfc_sermon_wrap cf">
 		<div class="wpfc_sermon_image">
@@ -306,9 +321,14 @@ function render_wpfc_sermon_single() {
 	</div>
 <?php
 }
+add_action ( 'sermon_single', 'wpfc_sermon_single' );
 
 // render single sermon entry
 function render_wpfc_sermon_excerpt() { 
+	do_action( 'sermon_excerpt' );
+}
+
+function wpfc_sermon_excerpt() { 
 	global $post;?>
 	<div class="wpfc_sermon_wrap cf">
 		<div class="wpfc_sermon_image">
@@ -333,6 +353,7 @@ function render_wpfc_sermon_excerpt() {
 	</div>
 	<?php 
 }
+add_action( 'sermon_excerpt', 'wpfc_sermon_excerpt' );
 
 // Add sermon content
 add_filter('the_content', 'add_wpfc_sermon_content');
