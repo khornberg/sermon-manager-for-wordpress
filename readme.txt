@@ -3,8 +3,8 @@ Contributors: wpforchurch
 Donate link: http://wpforchurch.com/
 Tags: church, sermon, sermons, preaching, podcasting
 Requires at least: 3.6
-Tested up to: 3.9
-Stable tag: 1.9.2
+Tested up to: 4.0
+Stable tag: 1.9.3
 
 Add audio and video sermons, manage speakers, series, and more to your church website
 
@@ -73,6 +73,10 @@ Visit the [plugin homepage](http://wpforchurch.com/plugins/sermon-manager/ "Serm
 2. Sermon Files
 
 == Changelog ==
+
+= 1.9.3 =
+* now actions are used to load sermon content in a theme: sermon_single & sermon_excerpt. This makes it easy to override the content by removing the default action and adding your own custom action.
+* Bugfix sermon_images shortcode now displays the description correctly
 
 = 1.9.2 =
 * improve setting MP3 duration; allow user to edit duration if not set accurately
