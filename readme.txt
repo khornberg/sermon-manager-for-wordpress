@@ -4,7 +4,7 @@ Donate link: http://wpforchurch.com/
 Tags: church, sermon, sermons, preaching, podcasting
 Requires at least: 3.6
 Tested up to: 4.1.1
-Stable tag: 1.9.3
+Stable tag: 1.9.4
 
 Add audio and video sermons, manage speakers, series, and more to your church website
 
@@ -73,6 +73,13 @@ Visit the [plugin homepage](http://wpforchurch.com/plugins/sermon-manager/ "Serm
 2. Sermon Files
 
 == Changelog ==
+
+= 1.9.4 =
+* Bugfix trailing / removed from podast feed
+* Bugfix don't include enclosure in podcast if there is no audio file
+* Bugfix [list_sermons] order/orderby attributes now work as expected
+* Bugfix hide_nav works correctly in the [sermons] shortcode
+* Bugfix setting defaults on activation now works correctly
 
 = 1.9.3 =
 * now actions are used to load sermon content in a theme: sermon_single & sermon_excerpt. This makes it easy to override the content by removing the default action and adding your own custom action.
