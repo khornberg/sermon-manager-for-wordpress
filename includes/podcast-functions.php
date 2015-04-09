@@ -63,7 +63,7 @@ function wpfc_podcast_add_item(){
 
 	$post_image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'large' );
 	$post_image = ( $post_image ) ? $post_image['0'] : null;
-	$enclosure = get_post_meta($post->ID, 'enclosure', 'true');
+	//$enclosure = get_post_meta($post->ID, 'enclosure', 'true');
 	
 
 	$audio_duration = get_post_meta($post->ID, '_wpfc_sermon_duration', 'true');
@@ -75,7 +75,7 @@ function wpfc_podcast_add_item(){
 	<?php if ( $post_image ) : ?>
 	<itunes:image href="<?php echo $post_image; ?>" />
 	<?php endif; ?>
-	<?php if ( $enclosure == '' ) : ?>
+	<?php if ( $audio == '' ) : ?>
 		<enclosure url="<?php echo $audio; ?>" length="0" type="audio/mpeg"/>
 	<?php endif; ?>
 	<itunes:duration><?php echo esc_html( $audio_duration ); ?></itunes:duration>
