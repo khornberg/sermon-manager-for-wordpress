@@ -2,7 +2,7 @@
 
 // add the itunes namespace to the RSS opening element
 function wpfc_podcast_add_namespace() {
-	echo 'xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd/"';
+	echo 'xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd"';
 }
 
 // add itunes specific info to each item
