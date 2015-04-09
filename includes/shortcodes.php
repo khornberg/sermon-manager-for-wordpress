@@ -13,8 +13,11 @@ function wpfc_list_sermons_shortcode( $atts = array () ){
 		'order' => 'ASC', // options: DESC
 		'orderby' => 'name', // options: id, count, name, slug, term_group, none
 	), $atts ) );
-	
-	$terms = get_terms($tax);
+	$args = array(
+		'orderby'           => $orderby, 
+		'order'             => $order,
+	); 
+	$terms = get_terms($tax, $args);
  $count = count($terms);
  if ( $count > 0 ){
      $list = '<ul id="list-sermons">';
