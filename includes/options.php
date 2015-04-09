@@ -4,7 +4,6 @@
  */
 
 // Set-up Action and Filter Hooks
-register_activation_hook(__FILE__, 'wpfc_add_defaults');
 add_action('admin_init', 'wpfc_init' );
 add_action('admin_menu', 'wpfc_add_options_page');
 add_filter('plugin_action_links', 'wpfc_plugin_action_links', 10, 2 );

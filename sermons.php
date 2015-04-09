@@ -43,6 +43,9 @@ require_once plugin_dir_path( __FILE__ ) . 'includes/taxonomy-images/taxonomy-im
 // Add Options Page
 require_once plugin_dir_path( __FILE__ ) . '/includes/options.php';
 
+// Add defaults on activation
+register_activation_hook(__FILE__, 'wpfc_add_defaults');
+
 // Add Entry Views Tracking
 require_once plugin_dir_path( __FILE__ ) . '/includes/entry-views.php';
 
