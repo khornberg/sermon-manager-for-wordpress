@@ -4,7 +4,7 @@ Donate link: http://wpforchurch.com/
 Tags: church, sermon, sermons, preaching, podcasting
 Requires at least: 3.6
 Tested up to: 4.1.1
-Stable tag: 1.9.4
+Stable tag: 1.9.5
 
 Add audio and video sermons, manage speakers, series, and more to your church website
 
@@ -73,6 +73,11 @@ Visit the [plugin homepage](http://wpforchurch.com/plugins/sermon-manager/ "Serm
 2. Sermon Files
 
 == Changelog ==
+
+= 1.9.5 =
+* Bugfix podcast title is taken from Settings Page
+* Bugfix podcast no longer has any missing sermons
+* Bugfix properly strip html from podcast summary
 
 = 1.9.4 =
 * Bugfix trailing / removed from podast feed
